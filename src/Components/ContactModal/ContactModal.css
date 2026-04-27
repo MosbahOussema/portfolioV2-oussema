@@ -1,0 +1,253 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-header h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  background: linear-gradient(270deg, #df8908 10%, #b415ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.modal-header p {
+  color: #888;
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+  max-width: 100%;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact-item {
+  background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(223, 137, 8, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  border-color: #df8908;
+  box-shadow: 0 10px 30px rgba(223, 137, 8, 0.2);
+}
+
+.contact-item:hover::before {
+  left: 100%;
+}
+
+.contact-icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+  text-align: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Couleurs élégantes avec dégradés pour chaque icône */
+.contact-item:nth-child(1) .contact-icon svg {
+  color: #ff6b35; /* Orange vif pour Email */
+  filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.4));
+}
+
+.contact-item:nth-child(2) .contact-icon svg {
+  color: #0a66c2; /* Bleu LinkedIn élégant */
+  filter: drop-shadow(0 2px 8px rgba(10, 102, 194, 0.4));
+}
+
+.contact-item:nth-child(3) .contact-icon svg {
+  color: #00d4aa; /* Vert-cyan moderne pour WhatsApp */
+  filter: drop-shadow(0 2px 8px rgba(0, 212, 170, 0.4));
+}
+
+.contact-item:nth-child(4) .contact-icon svg {
+  color: #6e40c9; /* Violet moderne pour GitHub */
+  filter: drop-shadow(0 2px 8px rgba(110, 64, 201, 0.4));
+}
+
+/* Effet hover sophistiqué pour les icônes */
+.contact-item:hover .contact-icon svg {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.contact-item:hover:nth-child(1) .contact-icon svg {
+  color: #ff8c42;
+  filter: drop-shadow(0 6px 12px rgba(255, 140, 66, 0.6));
+}
+
+.contact-item:hover:nth-child(2) .contact-icon svg {
+  color: #1a7fdb;
+  filter: drop-shadow(0 6px 12px rgba(26, 127, 219, 0.6));
+}
+
+.contact-item:hover:nth-child(3) .contact-icon svg {
+  color: #00e6b8;
+  filter: drop-shadow(0 6px 12px rgba(0, 230, 184, 0.6));
+}
+
+.contact-item:hover:nth-child(4) .contact-icon svg {
+  color: #8b5cf6;
+  filter: drop-shadow(0 6px 12px rgba(139, 92, 246, 0.6));
+}
+
+.contact-info {
+  text-align: center;
+  width: 100%;
+}
+
+.contact-info h3 {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.contact-info p {
+  color: #888;
+  font-size: 13px;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  max-width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 30px 20px;
+    width: 95%;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .modal-header h2 {
+    font-size: 24px;
+  }
+}
