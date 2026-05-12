@@ -1,7 +1,7 @@
 import project1_img from "../assets/project_1.svg";
 import project2_img from "../assets/project_2.svg";
 import project3_img from "../assets/project_3.svg";
-import project4_img from "../assets/project_4.svg";
+import championsmind_img from "../assets/ChampionsMind.svg";
 import agcff_img from "../assets/AGCFF.png";
 import eekad_img from "../assets/Eekad.png";
 import { translations } from "../translations";
@@ -36,11 +36,11 @@ const getMyWorkData = (language = "en") => {
     },
     {
       w_no: 4,
-      w_name: t.projects.talinty.name,
-      w_img: project4_img,
-      w_link: "https://talinty.com/",
-      w_description: t.projects.talinty.description,
-      w_technologies: t.projects.talinty.technologies,
+      w_name: t.projects.championsmind.name,
+      w_img: championsmind_img,
+      w_link: "",
+      w_description: t.projects.championsmind.description,
+      w_technologies: t.projects.championsmind.technologies,
     },
     {
       w_no: 5,
@@ -54,7 +54,7 @@ const getMyWorkData = (language = "en") => {
       w_no: 6,
       w_name: t.projects.eekad.name,
       w_img: eekad_img,
-      w_link: "https://x.com/eekadfacts",
+      w_link: "",
       w_description: t.projects.eekad.description,
       w_technologies: t.projects.eekad.technologies,
     },

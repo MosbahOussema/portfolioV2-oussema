@@ -1,177 +1,66 @@
+import React, { useState } from "react";
 import "./MyWork.css";
-import theme_pattern from "../../assets/theme_pattern.svg";
 import getMyWorkData from "../../assets/mywork_data";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useLanguage } from "../../contexts/LanguageContext";
-import { useState, useEffect, useRef } from "react";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 function MyWork() {
   const t = useTranslation();
   const { language } = useLanguage();
   const mywork_data = getMyWorkData(language);
-  const [activeCard, setActiveCard] = useState(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const touchTimeoutRef = useRef(null);
-
-  useEffect(() => {
-    // Detect if device supports touch
-    const checkTouchDevice = () => {
-      return "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    };
-    setIsTouchDevice(checkTouchDevice());
-  }, []);
-
-  const handleCardInteraction = (index, isActive) => {
-    setActiveCard(isActive ? index : null);
-  };
-
-  const handleTouchStart = (index, e) => {
-    if (isTouchDevice) {
-      e.preventDefault();
-      // Clear any existing timeout
-      if (touchTimeoutRef.current) {
-        clearTimeout(touchTimeoutRef.current);
-      }
-      handleCardInteraction(index, true);
-    }
-  };
-
-  const handleTouchEnd = (index, e) => {
-    if (isTouchDevice) {
-      e.preventDefault();
-      // Clear any existing timeout
-      if (touchTimeoutRef.current) {
-        clearTimeout(touchTimeoutRef.current);
-      }
-      // Add a shorter delay for smoother experience
-      touchTimeoutRef.current = setTimeout(() => {
-        handleCardInteraction(index, false);
-      }, 50);
-    }
-  };
-
-  const handleMouseEnter = (index) => {
-    if (!isTouchDevice) {
-      handleCardInteraction(index, true);
-    }
-  };
-
-  const handleMouseLeave = (index) => {
-    if (!isTouchDevice) {
-      handleCardInteraction(index, false);
-    }
-  };
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (touchTimeoutRef.current) {
-        clearTimeout(touchTimeoutRef.current);
-      }
-    };
-  }, []);
+  const sectionRef = useScrollReveal();
+  
+  // Logic for Show More (if needed in future)
+  const [displayCount, setDisplayCount] = useState(6);
 
   return (
-    <div className="mywork" id="work">
-      <div className="mywork-title">
-        <h1>{t.work.title}</h1>
-        <img src={theme_pattern} alt="" />
-      </div>
+    <section className="mywork section" id="work" ref={sectionRef}>
+      <h2 className="section-title reveal">
+        {t.work.title}
+      </h2>
+
       <div className="mywork-container">
-        {mywork_data.map((work, index) => {
-          const isEekad = work.w_name === "Eekad";
-          const imgStyle = isEekad
-            ? { objectFit: "contain", background: "#111" }
-            : {};
-
-          // Split technologies by comma and clean them
+        {mywork_data.slice(0, displayCount).map((work, index) => {
           const technologies = work.w_technologies
-            .split(",")
-            .map((tech) => tech.trim())
-            .filter((tech) => tech.length > 0);
-
-          const isActive = activeCard === index;
+            ? work.w_technologies.split(",").map(tech => tech.trim())
+            : [];
 
           return (
-            <div
-              key={index}
-              className={`work-card ${isActive ? "active" : ""}`}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              onTouchStart={(e) => handleTouchStart(index, e)}
-              onTouchEnd={(e) => handleTouchEnd(index, e)}
-              onTouchCancel={() => {
-                if (touchTimeoutRef.current) {
-                  clearTimeout(touchTimeoutRef.current);
-                }
-                handleCardInteraction(index, false);
-              }}
-            >
-              <div className="work-image-container">
-                {work.w_link ? (
-                  <a
-                    href={work.w_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="work-link"
-                    onClick={(e) => {
-                      if (isTouchDevice) {
-                        e.preventDefault();
-                        // Shorter delay for better responsiveness
-                        setTimeout(() => {
-                          window.open(work.w_link, "_blank");
-                        }, 100);
-                      }
-                    }}
-                  >
-                    <img src={work.w_img} alt={work.w_name} style={imgStyle} />
-                    <div className="work-overlay">
-                      <div className="work-info">
-                        <h3>{work.w_name}</h3>
-                        <p className="work-description">{work.w_description}</p>
-                        <div className="work-technologies-container">
-                          {technologies.map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="work-technology-badge"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        <span className="work-link-text">
+            <div key={index} className="mywork-format reveal">
+              <div className="project-image-container">
+                <img src={work.w_img} alt={work.w_name} />
+                <div className="project-overlay">
+                   <div className="project-info">
+                      <h3>{work.w_name}</h3>
+                      <p>{work.w_description}</p>
+                      <div className="project-tags">
+                        {technologies.map((tech, i) => (
+                          <span key={i} className="project-tag">{tech}</span>
+                        ))}
+                      </div>
+                      {work.w_link && (
+                        <a href={work.w_link} target="_blank" rel="noreferrer" className="project-link">
                           {t.work.viewSite}
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-                ) : (
-                  <>
-                    <img src={work.w_img} alt={work.w_name} style={imgStyle} />
-                    <div className="work-overlay">
-                      <div className="work-info">
-                        <h3>{work.w_name}</h3>
-                        <p className="work-description">{work.w_description}</p>
-                        <div className="work-technologies-container">
-                          {technologies.map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="work-technology-badge"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
+                        </a>
+                      )}
+                   </div>
+                </div>
               </div>
             </div>
           );
         })}
       </div>
-    </div>
+
+      {mywork_data.length > displayCount && (
+        <div className="mywork-showmore reveal" onClick={() => setDisplayCount(prev => prev + 3)}>
+          <p>{t.work.showMore}</p>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+          </svg>
+        </div>
+      )}
+    </section>
   );
 }
 

@@ -1,32 +1,35 @@
 import "./Services.css";
-import theme_pattern from "../../assets/theme_pattern.svg";
-import getServicesData from "../../assets/services_data";
 import { useTranslation } from "../../hooks/useTranslation";
-import { useLanguage } from "../../contexts/LanguageContext";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 function Services() {
   const t = useTranslation();
-  const { language } = useLanguage();
-  const Services_Data = getServicesData(language);
+  const sectionRef = useScrollReveal();
+
+  const skillIcons = ["⚡", "📱", "🎯", "✨"];
 
   return (
-    <div className="services" id="services">
-      <div className="services-title">
-        <h1>{t.services.title}</h1>
-        <img src={theme_pattern} alt="" />
-      </div>
-      <div className="service-container">
-        {Services_Data.map((service, index) => {
-          return (
-            <div key={index} className="service-format">
-              <h3>{service.s_no}</h3>
-              <h2>{service.s_name}</h2>
-              <p>{service.s_desc}</p>
+    <section className="services section" id="services" ref={sectionRef}>
+      <h2 className="section-title reveal">
+        {t.skills.title}
+      </h2>
+
+      <div className="skills-grid">
+        {t.skills.items.map((skill, index) => (
+          <div
+            key={index}
+            className={`skill-card glass reveal delay-${index + 1}`}
+          >
+            <div className="skill-card-icon">
+              <span>{skillIcons[index]}</span>
             </div>
-          );
-        })}
+            <h3 className="skill-card-title">{skill.name}</h3>
+            <p className="skill-card-description">{skill.description}</p>
+            <div className="skill-card-glow"></div>
+          </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
 

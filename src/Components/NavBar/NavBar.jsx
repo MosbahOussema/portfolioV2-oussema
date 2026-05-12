@@ -1,13 +1,12 @@
 import "./NavBar.css";
-import logo from "../../assets/logo.svg";
 import { useState, useEffect } from "react";
-import underline from "../../assets/nav_underline.svg";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { translations } from "../../translations";
 
 function NavBar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language];
 
@@ -16,13 +15,15 @@ function NavBar() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMenuOpen(false); // Fermer le menu mobile après clic
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "services", "work", "contact"];
-      const scrollPosition = window.scrollY + 100;
+      setIsScrolled(window.scrollY > 50);
+
+      const sections = ["home", "about", "experience", "services", "work", "solutions", "contact"];
+      const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -45,72 +46,87 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  return (
-    <div className="navbar">
-      <img src={logo} alt="" className="nav-logo" />
+  const navItems = [
+    { id: "about", label: t.nav.about },
+    { id: "experience", label: t.nav.experience },
+    { id: "work", label: t.nav.portfolio },
+  ];
 
-      {/* Menu hamburger pour mobile */}
-      <div className="hamburger" onClick={toggleMenu}>
-        <span className={`hamburger-line ${isMenuOpen ? "active" : ""}`}></span>
-        <span className={`hamburger-line ${isMenuOpen ? "active" : ""}`}></span>
-        <span className={`hamburger-line ${isMenuOpen ? "active" : ""}`}></span>
+  return (
+    <nav className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`} id="navbar">
+      {/* Logo */}
+      <div className="nav-logo" onClick={() => scrollToSection("home")}>
+        <div className="nav-logo-icon">
+          <span className="logo-letter">O</span>
+          <span className="logo-dot"></span>
+        </div>
       </div>
 
-      <ul className={`nav-menu ${isMenuOpen ? "nav-menu-open" : ""}`}>
-        <li>
-          <p
-            onClick={() => scrollToSection("home")}
-            className={activeSection === "home" ? "active" : ""}
-          >
-            {t.nav.home}
-          </p>
-          {activeSection === "home" && <img src={underline} alt="" />}
-        </li>
-        <li>
-          <p
-            onClick={() => scrollToSection("about")}
-            className={activeSection === "about" ? "active" : ""}
-          >
-            {t.nav.about}
-          </p>
-          {activeSection === "about" && <img src={underline} alt="" />}
-        </li>
-        <li>
-          <p
-            onClick={() => scrollToSection("services")}
-            className={activeSection === "services" ? "active" : ""}
-          >
-            {t.nav.services}
-          </p>
-          {activeSection === "services" && <img src={underline} alt="" />}
-        </li>
-        <li>
-          <p
-            onClick={() => scrollToSection("work")}
-            className={activeSection === "work" ? "active" : ""}
-          >
-            {t.nav.portfolio}
-          </p>
-          {activeSection === "work" && <img src={underline} alt="" />}
-        </li>
-        <li>
-          <p
-            onClick={() => scrollToSection("contact")}
-            className={activeSection === "contact" ? "active" : ""}
-          >
-            {t.nav.contact}
-          </p>
-          {activeSection === "contact" && <img src={underline} alt="" />}
-        </li>
+      {/* Desktop Nav Links */}
+      <ul className={`nav-menu ${isMenuOpen ? "nav-menu--open" : ""}`}>
+        {navItems.map((item) => (
+          <li key={item.id} className="nav-menu-item">
+            <button
+              onClick={() => scrollToSection(item.id)}
+              className={`nav-link ${activeSection === item.id ? "nav-link--active" : ""}`}
+            >
+              {item.label}
+              {activeSection === item.id && <span className="nav-link-indicator"></span>}
+            </button>
+          </li>
+        ))}
       </ul>
-      <button className="nav-language-btn" onClick={toggleLanguage}>
-        {language === "en" ? "EN" : "FR"}
-      </button>
-    </div>
+
+      {/* Right section */}
+      <div className="nav-right">
+        <button
+          className="nav-lang-toggle"
+          onClick={toggleLanguage}
+          aria-label="Toggle language"
+        >
+          <span className={`lang-option ${language === "en" ? "lang-option--active" : ""}`}>EN</span>
+          <span className="lang-separator">/</span>
+          <span className={`lang-option ${language === "fr" ? "lang-option--active" : ""}`}>FR</span>
+        </button>
+
+        <button
+          className="btn btn-primary nav-contact-btn"
+          onClick={() => scrollToSection("contact")}
+        >
+          {t.nav.contact}
+        </button>
+
+        {/* Hamburger */}
+        <button
+          className={`hamburger ${isMenuOpen ? "hamburger--active" : ""}`}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
+      </div>
+
+      {/* Mobile overlay */}
+      {isMenuOpen && <div className="nav-overlay" onClick={() => setIsMenuOpen(false)} />}
+    </nav>
   );
 }
 
