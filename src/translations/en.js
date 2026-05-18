@@ -194,7 +194,7 @@ export const en = {
     ],
   },
   work: {
-    title: "My Recent Projects",
+    title: "My Projects",
     showMore: "Show More",
     viewSite: "→ View site",
   },

@@ -1,6 +1,9 @@
 import "./NavBar.css";
 import { useState, useEffect } from "react";
+import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
+import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { translations } from "../../translations";
 
 function NavBar() {
@@ -8,6 +11,7 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, toggleLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const t = translations[language];
 
   const scrollToSection = (sectionId) => {
@@ -95,6 +99,21 @@ function NavBar() {
 
       {/* Right section */}
       <div className="nav-right">
+        <button
+          className="nav-theme-toggle"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          title={theme === "dark" ? "Light mode" : "Dark mode"}
+        >
+          <span className="theme-toggle-thumb">
+            {theme === "dark" ? (
+              <WbSunnyRoundedIcon fontSize="inherit" />
+            ) : (
+              <DarkModeRoundedIcon fontSize="inherit" />
+            )}
+          </span>
+        </button>
+
         <button
           className="nav-lang-toggle"
           onClick={toggleLanguage}

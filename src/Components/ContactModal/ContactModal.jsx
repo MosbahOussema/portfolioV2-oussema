@@ -1,9 +1,21 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import "./ContactModal.css";
 import { useTranslation } from "../../hooks/useTranslation";
 
 const ContactModal = ({ isOpen, onClose }) => {
   const t = useTranslation();
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -31,14 +43,20 @@ const ContactModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>
+    <div className="modal-overlay" onClick={onClose} role="presentation">
+      <div
+        className="modal-content"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-title"
+      >
+        <button className="modal-close" onClick={onClose} aria-label="Close contact modal">
           ×
         </button>
 
         <div className="modal-header">
-          <h2>{t.contactModal.title}</h2>
+          <h2 id="contact-modal-title">{t.contactModal.title}</h2>
           <p>{t.contactModal.subtitle}</p>
         </div>
 

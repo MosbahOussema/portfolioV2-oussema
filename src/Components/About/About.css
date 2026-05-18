@@ -169,17 +169,32 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-2xl);
     text-align: center;
+  }
+
+  .about-image-wrapper {
+    width: 260px;
+    height: 320px;
+    margin: 0 auto;
+  }
+
+  .about-skills-grid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    gap: var(--space-xl);
   }
 
   .about-image-wrapper {
     width: 220px;
     height: 270px;
-    margin: 0 auto;
   }
 
   .about-skills-grid {
@@ -187,8 +202,10 @@
   }
 
   .about-achievements {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-sm);
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .achievement-card {

@@ -194,7 +194,7 @@ export const fr = {
     ],
   },
   work: {
-    title: "Mes Projets Récents",
+    title: "Mes Projets",
     showMore: "Voir Plus",
     viewSite: "→ Voir le site",
   },
