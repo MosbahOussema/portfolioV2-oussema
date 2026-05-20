@@ -30,7 +30,7 @@ const ContactModal = ({ isOpen, onClose }) => {
 
   const handleWhatsApp = () => {
     // Lien WhatsApp avec votre numéro de téléphone
-    const phoneNumber = "21654809536"; // Votre numéro tunisien
+    const phoneNumber = "21620009536"; // Votre numéro tunisien
     const message = "Hello from your portfolio!";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message

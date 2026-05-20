@@ -253,12 +253,12 @@ export const en = {
     },
     details: {
       email: "Mosbahoussama19@gmail.com",
-      phone: "+216 54 809 536 / 20 009 536",
+      phone: "+216 20 009 536 / 54 809 536",
       location: "Sousse, Tunisia",
     },
     toast: {
-      success: "✅ Message sent successfully!",
-      error: "❌ Error sending message. Please try again.",
+      success: "Message sent successfully!",
+      error: "Error sending message. Please try again.",
     },
   },
   contactModal: {
@@ -281,5 +281,7 @@ export const en = {
     newsletter: "Stay updated with my latest projects and insights.",
     emailPlaceholder: "Enter your email address",
     subscribe: "Subscribe",
+    subscribeSuccess: "Thank you for subscribing!",
+    subscribeError: "Something went wrong.",
   },
 };

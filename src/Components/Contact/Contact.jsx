@@ -1,47 +1,29 @@
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import "./Contact.css";
 import { useTranslation } from "../../hooks/useTranslation";
 import useScrollReveal from "../../hooks/useScrollReveal";
+
+const SuccessIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+const ErrorIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+    <circle cx="12" cy="12" r="10" />
+    <line x1="12" y1="8" x2="12" y2="12" />
+    <line x1="12" y1="16" x2="12.01" y2="16" />
+  </svg>
+);
 
 function Contact() {
   const form = useRef();
   const t = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionRef = useScrollReveal();
-
-  const customToastStyle = {
-    background: "linear-gradient(135deg, #7F1DFF 0%, #D46F88 100%)",
-    color: "#fff",
-    borderRadius: "16px",
-    fontFamily: "'Plus Jakarta Sans', sans-serif",
-    fontSize: "14px",
-    border: "none",
-    boxShadow: "0 8px 32px rgba(127, 29, 255, 0.3)",
-    padding: "14px 24px",
-    fontWeight: 500,
-  };
-
-  const customCloseButton = ({ closeToast }) => (
-    <button
-      onClick={closeToast}
-      style={{
-        background: "transparent",
-        border: "none",
-        color: "#fff",
-        fontSize: "18px",
-        fontWeight: 700,
-        cursor: "pointer",
-        marginLeft: "8px",
-        lineHeight: 1,
-      }}
-      aria-label="Close"
-    >
-      ×
-    </button>
-  );
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -68,9 +50,7 @@ function Contact() {
             pauseOnHover: true,
             draggable: true,
             theme: "colored",
-            style: customToastStyle,
-            icon: false,
-            closeButton: customCloseButton,
+            icon: <SuccessIcon />,
           });
           form.current.reset();
           setIsSubmitting(false);
@@ -84,9 +64,7 @@ function Contact() {
             pauseOnHover: true,
             draggable: true,
             theme: "colored",
-            style: customToastStyle,
-            icon: false,
-            closeButton: customCloseButton,
+            icon: <ErrorIcon />,
           });
           setIsSubmitting(false);
         }
@@ -95,17 +73,6 @@ function Contact() {
 
   return (
     <section className="contact section" id="contact" ref={sectionRef}>
-      <ToastContainer
-        position="bottom-right"
-        toastStyle={customToastStyle}
-        limit={1}
-        closeOnClick
-        pauseOnHover
-        draggable
-        newestOnTop
-        hideProgressBar
-      />
-
       <h2 className="section-title reveal">
         {t.contact.title}
       </h2>

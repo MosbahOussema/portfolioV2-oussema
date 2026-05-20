@@ -9,6 +9,8 @@ import Contact from "./Components/Contact/Contact";
 import Footer from "./Components/Footer/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -38,6 +40,16 @@ function App() {
           <Solutions />
           <Contact />
           <Footer />
+
+          <ToastContainer
+            position="bottom-right"
+            limit={1}
+            closeOnClick
+            pauseOnHover
+            draggable
+            newestOnTop
+            hideProgressBar
+          />
         </div>
       </LanguageProvider>
     </ThemeProvider>

@@ -15,6 +15,9 @@ function Hero() {
   const t = useTranslation();
   const sectionRef = useScrollReveal();
 
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const resumePdf = language === "en" ? resumePdfEn : resumePdfFr;
 
   // Rotate role tags
@@ -24,6 +27,50 @@ function Hero() {
     }, 2500);
     return () => clearInterval(interval);
   }, [t.hero.roles.length]);
+
+  // Typewriter effect for subtitle
+  const fullText = t.hero.subtitle;
+
+  useEffect(() => {
+    setDisplayText("");
+    setIsDeleting(false);
+  }, [fullText]);
+
+  useEffect(() => {
+    let timer;
+
+    const handleTyping = () => {
+      if (!isDeleting) {
+        if (displayText === fullText) {
+          // Pause 4.5 seconds at the end of the text so it's fully readable
+          timer = setTimeout(() => {
+            setIsDeleting(true);
+          }, 4500);
+        } else {
+          // Slow down writing speed (130ms - 170ms) + initial 1s delay on empty text
+          const nextSpeed = displayText === "" ? 1000 : 130 + Math.random() * 40;
+          timer = setTimeout(() => {
+            setDisplayText(fullText.substring(0, displayText.length + 1));
+          }, nextSpeed);
+        }
+      } else {
+        if (displayText === "") {
+          // Pause 1 second when empty before starting over
+          timer = setTimeout(() => {
+            setIsDeleting(false);
+          }, 1000);
+        } else {
+          // Slow down deletion speed (65ms)
+          timer = setTimeout(() => {
+            setDisplayText(fullText.substring(0, displayText.length - 1));
+          }, 65);
+        }
+      }
+    };
+
+    handleTyping();
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, fullText]);
 
   const roleIcons = [
     <svg key="code" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
@@ -49,7 +96,10 @@ function Hero() {
           </h1>
           <p className="hero-subtitle">
             <span className="hero-subtitle-line"></span>
-            {t.hero.subtitle}
+            <span className="hero-subtitle-text">
+              {displayText}
+              <span className="typewriter-cursor">|</span>
+            </span>
           </p>
           <p className="hero-description">{t.hero.description}</p>
 
@@ -101,6 +151,7 @@ function Hero() {
               <div
                 key={index}
                 className={`hero-stat-card glass ${index === roleIndex ? "hero-stat-card--active" : ""}`}
+                onClick={() => setRoleIndex(index)}
               >
                 <div className="hero-stat-icon">
                   {roleIcons[index]}

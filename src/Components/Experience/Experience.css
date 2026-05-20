@@ -232,3 +232,34 @@
     font-size: 11px;
   }
 }
+
+@media (max-width: 360px) {
+  .experience-card {
+    margin-left: 24px;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .experience-card::before {
+    left: -18px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .experience-company-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .experience-role {
+    font-size: var(--font-size-xs);
+  }
+
+  .experience-description {
+    font-size: var(--font-size-xs);
+  }
+
+  .experience-tag {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+}

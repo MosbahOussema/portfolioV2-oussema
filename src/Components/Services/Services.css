@@ -95,12 +95,24 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .skills-grid {
     grid-template-columns: 1fr;
   }
+}
 
+@media (max-width: 480px) {
   .skill-card {
     padding: var(--space-lg);
+  }
+
+  .skill-card-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+
+  .skill-card-title {
+    font-size: var(--font-size-base);
   }
 }

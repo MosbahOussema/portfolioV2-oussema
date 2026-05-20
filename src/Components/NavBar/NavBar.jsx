@@ -118,10 +118,11 @@ function NavBar() {
           className="nav-lang-toggle"
           onClick={toggleLanguage}
           aria-label="Toggle language"
+          title={`Switch to ${language === "en" ? "French" : "English"}`}
         >
-          <span className={`lang-option ${language === "en" ? "lang-option--active" : ""}`}>EN</span>
-          <span className="lang-separator">/</span>
-          <span className={`lang-option ${language === "fr" ? "lang-option--active" : ""}`}>FR</span>
+          <span className={`lang-thumb ${language === "fr" ? "lang-thumb--fr" : ""}`} />
+          <span className={`lang-text ${language === "en" ? "lang-text--active" : ""}`}>EN</span>
+          <span className={`lang-text ${language === "fr" ? "lang-text--active" : ""}`}>FR</span>
         </button>
 
         <button

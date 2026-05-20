@@ -115,9 +115,9 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--color-primary);
+  border-color: var(--color-primary-light);
   background: rgba(127, 29, 255, 0.04);
-  box-shadow: 0 0 0 3px rgba(127, 29, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(127, 29, 255, 0.15), 0 4px 16px rgba(127, 29, 255, 0.1);
 }
 
 /* Submit Button */
@@ -202,6 +202,27 @@
   .form-group input,
   .form-group textarea {
     padding: 12px 14px;
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 360px) {
+  .contact-subtitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .contact-detail-item {
+    padding: 10px 12px;
+    gap: var(--space-sm);
+  }
+
+  .contact-detail-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .contact-submit-btn {
+    padding: 14px;
     font-size: var(--font-size-xs);
   }
 }

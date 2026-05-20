@@ -23,6 +23,9 @@
 
 /* --- Logo --- */
 .nav-logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
   cursor: pointer;
   z-index: 1001;
 }
@@ -63,6 +66,7 @@
 
 /* --- Nav Menu --- */
 .nav-menu {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -121,27 +125,71 @@
 
 /* --- Right Section --- */
 .nav-right {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--space-md);
   z-index: 1001;
 }
 
 .nav-lang-toggle {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 14px;
+  width: 76px;
+  height: 30px;
+  padding: 3px;
   border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-text-secondary);
   border: 1px solid var(--color-border-subtle);
   background: var(--color-nav-control-bg);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   cursor: pointer;
   transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.nav-lang-toggle:hover {
+  border-color: rgba(127, 29, 255, 0.32);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.lang-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 35px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-gradient-primary);
+  box-shadow: 0 2px 8px rgba(127, 29, 255, 0.24);
+  transform: translateX(0);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.lang-thumb--fr {
+  transform: translateX(35px);
+}
+
+.lang-text {
+  position: relative;
+  z-index: 2;
+  width: 35px;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  line-height: 22px;
   font-family: var(--font-family);
+  letter-spacing: 0.5px;
+}
+
+.lang-text--active {
+  color: #FFFFFF !important;
 }
 
 .nav-theme-toggle {
@@ -182,25 +230,6 @@
 
 :root[data-theme="light"] .theme-toggle-thumb {
   transform: translateX(0);
-}
-
-.nav-lang-toggle:hover {
-  border-color: rgba(127, 29, 255, 0.3);
-  color: var(--color-text);
-  background: rgba(127, 29, 255, 0.05);
-}
-
-.lang-option {
-  transition: color var(--transition-fast);
-}
-
-.lang-option--active {
-  color: var(--color-primary-light);
-}
-
-.lang-separator {
-  color: var(--color-text-muted);
-  font-weight: 400;
 }
 
 .nav-contact-btn {
@@ -304,10 +333,6 @@
 @media (max-width: 480px) {
   .navbar {
     padding: 0 var(--space-md);
-  }
-
-  .nav-lang-toggle {
-    padding: 6px 10px;
   }
 
   .nav-right {
