@@ -5,6 +5,7 @@ import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import { translations } from "../../translations";
+import useScrollToSection from "../../hooks/useScrollToSection";
 
 function NavBar() {
   const [activeSection, setActiveSection] = useState("home");
@@ -14,13 +15,7 @@ function NavBar() {
   const { theme, toggleTheme } = useTheme();
   const t = translations[language];
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
+  const scrollToSection = useScrollToSection(() => setIsMenuOpen(false));
 
   useEffect(() => {
     const handleScroll = () => {

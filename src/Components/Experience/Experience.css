@@ -75,6 +75,16 @@
   color: var(--color-primary-light);
   display: inline-flex;
   align-items: center;
+  gap: 0.35em;
+}
+
+.experience-arrow {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: -0.1em;
+  color: inherit;
 }
 
 /* Header */
@@ -518,14 +528,14 @@
   font-weight: 600;
   transition: all var(--transition-base);
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   padding: 6px 16px;
   border-radius: var(--radius-full);
   background: var(--color-gradient-primary);
   border: none;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
   box-shadow: 0 2px 10px rgba(127, 29, 255, 0.2);
 }
 

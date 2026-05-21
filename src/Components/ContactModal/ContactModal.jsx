@@ -1,45 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
 import "./ContactModal.css";
 import { useTranslation } from "../../hooks/useTranslation";
+import { contactConfig, getMailtoUrl, getWhatsappUrl } from "../../config/contact";
+import useBodyScrollLock from "../../hooks/useBodyScrollLock";
 
 const ContactModal = ({ isOpen, onClose }) => {
   const t = useTranslation();
-
-  useEffect(() => {
-    if (!isOpen) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
+  useBodyScrollLock(isOpen);
 
   if (!isOpen) return null;
 
   const handleEmail = () => {
-    window.location.href =
-      "mailto:Mosbahoussama19@gmail.com?subject=Hello from your portfolio";
+    window.location.href = getMailtoUrl();
   };
 
   const handleLinkedIn = () => {
-    window.open("https://linkedin.com/in/mosbah-oussama", "_blank");
+    window.open(contactConfig.linkedinUrl, "_blank");
   };
 
   const handleWhatsApp = () => {
-    // Lien WhatsApp avec votre numéro de téléphone
-    const phoneNumber = "21620009536"; // Votre numéro tunisien
-    const message = "Hello from your portfolio!";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-    window.open(whatsappUrl, "_blank");
+    window.open(getWhatsappUrl("Hello from your portfolio!"), "_blank");
   };
 
   const handleGitHub = () => {
-    window.open("https://github.com/MosbahOussema", "_blank");
+    window.open(contactConfig.githubUrl, "_blank");
   };
 
   return (
@@ -52,7 +36,7 @@ const ContactModal = ({ isOpen, onClose }) => {
         aria-labelledby="contact-modal-title"
       >
         <button className="modal-close" onClick={onClose} aria-label="Close contact modal">
-          ×
+          Ã—
         </button>
 
         <div className="modal-header">

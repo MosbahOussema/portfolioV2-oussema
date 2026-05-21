@@ -4,6 +4,7 @@ import getMyWorkData from "../../assets/mywork_data";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useLanguage } from "../../contexts/LanguageContext";
 import useScrollReveal from "../../hooks/useScrollReveal";
+import ProjectCard from "./ProjectCard";
 
 function MyWork() {
   const t = useTranslation();
@@ -11,8 +12,6 @@ function MyWork() {
   const mywork_data = getMyWorkData(language);
   const sectionRef = useScrollReveal();
   const [activeProject, setActiveProject] = useState(null);
-  
-  // Logic for Show More (if needed in future)
   const [displayCount, setDisplayCount] = useState(6);
 
   const toggleProject = (index) => {
@@ -68,92 +67,17 @@ function MyWork() {
             : [];
 
           return (
-            <article
-              key={index}
-              className={`mywork-format reveal revealed${activeProject === index ? " is-active" : ""}`}
-              tabIndex="0"
-              role="button"
-              aria-expanded={activeProject === index}
-              aria-label={`${work.w_name} project details`}
-              onClick={(event) => handleProjectClick(event, index)}
-              onKeyDown={(event) => handleKeyDown(event, index)}
-              onBlur={(event) => handleBlur(event, index)}
-            >
-              <div className="project-card-inner">
-                <div className="project-card-face project-card-front">
-                  <div className={`project-image-container${work.w_no === 6 ? " project-image-eekad" : ""}`}>
-                    <img src={work.w_img} alt={work.w_name} />
-                  </div>
-                  <div className="project-front-shine" aria-hidden="true" />
-                  <div className="project-mobile-info">
-                    <h3>{work.w_name}</h3>
-                    <p>{work.w_description}</p>
-                    <div className="project-tags">
-                      {technologies.slice(0, 4).map((tech, i) => (
-                        <span key={i} className="project-tag">{tech}</span>
-                      ))}
-                    </div>
-                    {work.w_link && (
-                      <a
-                        href={work.w_link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="project-link"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        {t.work.viewSite}
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                <div className="project-card-face project-card-back">
-                  <div className="project-info">
-                    <h3>{work.w_name}</h3>
-                    <p>{work.w_description}</p>
-                    <div className="project-tags">
-                      {technologies.slice(0, 4).map((tech, i) => (
-                        <span key={i} className="project-tag">{tech}</span>
-                      ))}
-                    </div>
-                    {work.w_link && (
-                      <a
-                        href={work.w_link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="project-link"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        {t.work.viewSite}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {activeProject === index && (
-                <div className="project-mobile-panel">
-                  <h3>{work.w_name}</h3>
-                  <p>{work.w_description}</p>
-                  <div className="project-tags">
-                    {technologies.slice(0, 4).map((tech, i) => (
-                      <span key={i} className="project-tag">{tech}</span>
-                    ))}
-                  </div>
-                  {work.w_link && (
-                    <a
-                      href={work.w_link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="project-link"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      {t.work.viewSite}
-                    </a>
-                  )}
-                </div>
-              )}
-            </article>
+            <ProjectCard
+              key={work.id}
+              work={work}
+              index={index}
+              technologies={technologies}
+              activeProject={activeProject}
+              viewSiteLabel={t.work.viewSite}
+              onProjectClick={handleProjectClick}
+              onKeyDown={handleKeyDown}
+              onBlur={handleBlur}
+            />
           );
         })}
       </div>

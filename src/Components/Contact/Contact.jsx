@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "./Contact.css";
 import { useTranslation } from "../../hooks/useTranslation";
 import useScrollReveal from "../../hooks/useScrollReveal";
+import { contactConfig } from "../../config/contact";
 
 const SuccessIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -35,10 +36,10 @@ function Contact() {
 
     emailjs
       .sendForm(
-        "service_bpst4vk",
-        "template_f219soe",
+        contactConfig.emailjs.serviceId,
+        contactConfig.emailjs.templateId,
         form.current,
-        "VUqWGMuWe4hqvUJJ7"
+        contactConfig.emailjs.publicKey
       )
       .then(
         () => {
