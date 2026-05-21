@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /**
  * Custom hook for scroll-triggered reveal animations.
@@ -11,6 +12,7 @@ import { useEffect, useRef } from 'react';
  */
 export const useScrollReveal = (options = {}) => {
   const ref = useRef(null);
+  const { language } = useLanguage();
   const { threshold = 0.1, rootMargin = '0px 0px -50px 0px' } = options;
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export const useScrollReveal = (options = {}) => {
     }
 
     return () => observer.disconnect();
-  }, [threshold, rootMargin]);
+  }, [threshold, rootMargin, language]);
 
   return ref;
 };
