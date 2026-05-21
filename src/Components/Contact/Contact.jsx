@@ -5,6 +5,7 @@ import "./Contact.css";
 import { useTranslation } from "../../hooks/useTranslation";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import { contactConfig } from "../../config/contact";
+import useAnalytics from "../../hooks/useAnalytics";
 
 const SuccessIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -25,6 +26,7 @@ function Contact() {
   const t = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const sectionRef = useScrollReveal();
+  const { trackContactFormSubmit } = useAnalytics();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -43,6 +45,7 @@ function Contact() {
       )
       .then(
         () => {
+          trackContactFormSubmit(true);
           toast.success(t.contact.toast.success, {
             position: "bottom-right",
             autoClose: 3000,
@@ -57,6 +60,7 @@ function Contact() {
           setIsSubmitting(false);
         },
         () => {
+          trackContactFormSubmit(false);
           toast.error(t.contact.toast.error, {
             position: "bottom-right",
             autoClose: 3000,

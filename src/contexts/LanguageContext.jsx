@@ -15,7 +15,16 @@ export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState("en");
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "fr" : "en"));
+    setLanguage((prev) => {
+      const next = prev === "en" ? "fr" : "en";
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "language_switch", {
+          event_category: "engagement",
+          event_label: next,
+        });
+      }
+      return next;
+    });
   };
 
   const value = {

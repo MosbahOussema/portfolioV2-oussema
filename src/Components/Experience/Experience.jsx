@@ -40,7 +40,7 @@ function Experience() {
       <div className="experience-timeline">
         {t.experience.jobs.map((job, index) => (
           <ExperienceCard
-            key={index}
+            key={job.company}
             job={job}
             index={index}
             totalJobs={t.experience.jobs.length}

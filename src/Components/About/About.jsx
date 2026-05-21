@@ -23,7 +23,7 @@ function About() {
       <div className="about-content">
         <div className="about-image-col reveal-left">
           <div className="about-image-wrapper">
-            <img src={profile_img} alt="Oussama Mosbah" className="about-image" />
+            <img src={profile_img} alt="Oussama Mosbah" className="about-image" loading="lazy" />
             <div className="about-image-border"></div>
             <div className="about-image-glow"></div>
           </div>

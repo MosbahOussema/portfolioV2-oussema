@@ -1,21 +1,32 @@
-import NavBar from "./components/NavBar/NavBar";
-import Hero from "./components/Hero/Hero";
-import About from "./components/About/About";
-import Experience from "./components/Experience/Experience";
-import Services from "./components/Services/Services";
-import MyWork from "./components/MyWork/MyWork";
-import Solutions from "./components/Solutions/Solutions";
-import Contact from "./components/Contact/Contact";
-import Footer from "./components/Footer/Footer";
+import { useEffect } from "react";
+import NavBar from "./Components/NavBar/NavBar";
+import Hero from "./Components/Hero/Hero";
+import About from "./Components/About/About";
+import Experience from "./Components/Experience/Experience";
+import Services from "./Components/Services/Services";
+import MyWork from "./Components/MyWork/MyWork";
+import Solutions from "./Components/Solutions/Solutions";
+import Contact from "./Components/Contact/Contact";
+import Footer from "./Components/Footer/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { useLanguage } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+function LangSync() {
+  const { language } = useLanguage();
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+  return null;
+}
 
 function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
+        <LangSync />
         <div className="app">
           <div className="global-bg" aria-hidden="true">
             <div className="global-beam global-beam--1"></div>

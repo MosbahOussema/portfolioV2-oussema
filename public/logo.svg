@@ -1,0 +1,21 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7F1DFF" />
+      <stop offset="1" stop-color="#D46F88" />
+    </linearGradient>
+  </defs>
+  <rect width="44" height="44" rx="12" fill="url(#logoGradient)" />
+  <text
+    x="22"
+    y="29"
+    text-anchor="middle"
+    font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif"
+    font-size="22.4"
+    font-weight="800"
+    fill="#FFFFFF"
+  >
+    O
+  </text>
+  <circle cx="35" cy="35" r="3" fill="#FFEB34" />
+</svg>

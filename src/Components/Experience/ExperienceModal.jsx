@@ -2,18 +2,25 @@
 import { createPortal } from "react-dom";
 import { projectAssets } from "../../data/projects";
 import ExperienceArrow from "./ExperienceArrow";
+import useAnalytics from "../../hooks/useAnalytics";
 
 function ExperienceModal({ selectedJob, language, onClose }) {
+  const { trackProjectLink } = useAnalytics();
   if (!selectedJob) return null;
 
   return createPortal(
     <div
       className="experience-modal-overlay"
       onClick={onClose}
-      role="dialog"
-      aria-modal="true"
+      aria-hidden="true"
     >
-      <div className="experience-modal-content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="experience-modal-content"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="experience-modal-title"
+      >
         <button
           className="experience-modal-close"
           onClick={onClose}
@@ -30,7 +37,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
             <span>{selectedJob.company.charAt(0)}</span>
           </div>
           <div className="modal-header-text">
-            <h3 className="modal-role">{selectedJob.role}</h3>
+            <h3 className="modal-role" id="experience-modal-title">{selectedJob.role}</h3>
             <p className="modal-company">{selectedJob.company}</p>
             <span className="modal-period">{selectedJob.period}</span>
             {selectedJob.type && (
@@ -55,7 +62,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
 
         <div className="modal-projects-section">
           <h4 className="modal-section-title">
-            {language === "fr" ? "Projets RÃ©alisÃ©s" : "Realized Projects"}
+            {language === "fr" ? "Projets Réalisés" : "Realized Projects"}
           </h4>
           <div className="modal-projects-grid">
             {selectedJob.projects.map((project) => (
@@ -65,6 +72,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
                     src={projectAssets[project.id]}
                     alt={project.name}
                     className="modal-project-img"
+                    loading="lazy"
                   />
                 </div>
                 <div className="modal-project-details">
@@ -75,7 +83,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
                   <p className="modal-project-desc">{project.description}</p>
 
                   <div className="modal-project-achievements">
-                    <h6>{language === "fr" ? "RÃ©alisations ClÃ©s :" : "Key Achievements:"}</h6>
+                    <h6>{language === "fr" ? "Réalisations Clés :" : "Key Achievements:"}</h6>
                     <ul>
                       {project.achievements.map((achievement, idx) => (
                         <li key={idx}>{achievement}</li>
@@ -95,6 +103,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
                         target="_blank"
                         rel="noreferrer"
                         className="modal-project-link"
+                        onClick={() => trackProjectLink(project.name, project.link)}
                       >
                         <>
                           {language === "fr" ? "Voir le site" : "View site"}

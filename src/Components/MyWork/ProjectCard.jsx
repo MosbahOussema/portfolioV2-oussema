@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import useAnalytics from "../../hooks/useAnalytics";
+
 function ProjectCard({
   work,
   index,
@@ -70,6 +72,7 @@ function ProjectTags({ technologies }) {
 }
 
 function ProjectLink({ work, viewSiteLabel }) {
+  const { trackProjectLink } = useAnalytics();
   if (!work.w_link) return null;
 
   return (
@@ -78,7 +81,10 @@ function ProjectLink({ work, viewSiteLabel }) {
       target="_blank"
       rel="noreferrer"
       className="project-link"
-      onClick={(event) => event.stopPropagation()}
+      onClick={(event) => {
+        event.stopPropagation();
+        trackProjectLink(work.w_name, work.w_link);
+      }}
     >
       {viewSiteLabel}
     </a>
