@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useState } from "react";
 
 const LanguageContext = createContext();
 
@@ -27,4 +28,8 @@ export const LanguageProvider = ({ children }) => {
       {children}
     </LanguageContext.Provider>
   );
+};
+
+LanguageProvider.propTypes = {
+  children: () => null,
 };

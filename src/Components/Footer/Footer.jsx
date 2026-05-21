@@ -93,7 +93,7 @@ function Footer() {
               <span className="footer-logo-letter">O</span>
               <span className="footer-logo-dot"></span>
             </div>
-            <span className="footer-logo-text">Oussema</span>
+            <span className="footer-logo-text">Oussama</span>
           </div>
           <p className="footer-description">{t.footer.description}</p>
           {/* Social Icons */}

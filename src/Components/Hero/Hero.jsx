@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Hero.css";
 import profile_img from "../../assets/hero4.png";
-import resumePdfEn from "../../assets/Cv_Oussama_Mosbah_En.pdf";
-import resumePdfFr from "../../assets/Cv_Oussama_Mosbah_Fr.pdf";
+import resumePdfEn from "../../assets/Cv_Oussama_Mosbah_En .pdf";
+import resumePdfFr from "../../assets/Cv_Oussama_Mosbah_Fr .pdf";
 import ContactModal from "../ContactModal/ContactModal";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -132,7 +132,7 @@ function Hero() {
             <div className="hero-profile-image-wrapper">
               <img
                 src={profile_img}
-                alt="Oussema Mosbah"
+                alt="Oussama Mosbah"
                 className="hero-profile-image"
               />
               <div className="hero-profile-glow"></div>

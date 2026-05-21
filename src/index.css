@@ -1,5 +1,5 @@
 /* ============================================
-   DESIGN SYSTEM — Oussema Mosbah Portfolio
+   DESIGN SYSTEM — Oussama Mosbah Portfolio
    Premium Dark Theme
    ============================================ */
 
@@ -130,6 +130,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
   overflow-x: hidden;
+  background-color: var(--color-bg);
 }
 
 body {
