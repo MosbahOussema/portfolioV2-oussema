@@ -1,5 +1,5 @@
 import "./About.css";
-import profile_img from "../../assets/me1.png";
+import profile_img from "../../assets/me1.jpg";
 import { useTranslation } from "../../hooks/useTranslation";
 import useScrollReveal from "../../hooks/useScrollReveal";
 
@@ -23,7 +23,13 @@ function About() {
       <div className="about-content">
         <div className="about-image-col reveal-left">
           <div className="about-image-wrapper">
-            <img src={profile_img} alt="Oussama Mosbah" className="about-image" loading="lazy" />
+            <img
+              src={profile_img}
+              alt="Oussama Mosbah"
+              className="about-image"
+              loading="lazy"
+              decoding="async"
+            />
             <div className="about-image-border"></div>
             <div className="about-image-glow"></div>
           </div>

@@ -70,12 +70,17 @@ function NavBar() {
   return (
     <nav className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`} id="navbar">
       {/* Logo */}
-      <div className="nav-logo" onClick={() => scrollToSection("home")}>
+      <button
+        type="button"
+        className="nav-logo"
+        onClick={() => scrollToSection("home")}
+        aria-label={language === "fr" ? "Retour à l'accueil" : "Back to home"}
+      >
         <div className="nav-logo-icon">
           <span className="logo-letter">O</span>
           <span className="logo-dot"></span>
         </div>
-      </div>
+      </button>
 
       {/* Desktop Nav Links */}
       <ul className={`nav-menu ${isMenuOpen ? "nav-menu--open" : ""}`}>

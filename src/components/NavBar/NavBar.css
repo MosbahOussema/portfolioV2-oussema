@@ -28,6 +28,13 @@
   justify-content: flex-start;
   cursor: pointer;
   z-index: 1001;
+  padding: 0;
+  color: inherit;
+}
+
+.nav-logo:focus-visible .nav-logo-icon {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(127, 29, 255, 0.22), 0 4px 15px rgba(127, 29, 255, 0.2);
 }
 
 .nav-logo-icon {

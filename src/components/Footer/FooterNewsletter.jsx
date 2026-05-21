@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { contactConfig } from "../../config/contact";
@@ -42,7 +42,7 @@ function FooterNewsletter({ t }) {
         contactConfig.emailjs.serviceId,
         contactConfig.emailjs.templateId,
         templateParams,
-        contactConfig.emailjs.publicKey
+        { publicKey: contactConfig.emailjs.publicKey }
       )
       .then(
         () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Hero.css";
-import profile_img from "../../assets/hero4.png";
+import profile_img from "../../assets/hero4.jpg";
 import resumePdfEn from "../../assets/Cv_Oussama_Mosbah_En .pdf";
 import resumePdfFr from "../../assets/Cv_Oussama_Mosbah_Fr .pdf";
 import ContactModal from "../ContactModal/ContactModal";
@@ -92,6 +92,8 @@ function Hero() {
                 src={profile_img}
                 alt="Oussama Mosbah"
                 className="hero-profile-image"
+                decoding="async"
+                fetchPriority="high"
               />
               <div className="hero-profile-glow"></div>
               <div className="hero-profile-ring"></div>
@@ -106,17 +108,20 @@ function Hero() {
           {/* Role Stat Cards */}
           <div className="hero-stat-cards">
             {t.hero.roles.map((role, index) => (
-              <div
+              <button
+                type="button"
                 key={index}
                 className={`hero-stat-card glass ${index === roleIndex ? "hero-stat-card--active" : ""}`}
                 onClick={() => setRoleIndex(index)}
+                aria-pressed={index === roleIndex}
+                aria-label={role}
               >
                 <div className="hero-stat-icon">
                   {roleIcons[index]}
                 </div>
                 <span className="hero-stat-label">{role}</span>
                 <div className="hero-stat-glow"></div>
-              </div>
+              </button>
             ))}
           </div>
         </div>

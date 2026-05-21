@@ -1,11 +1,11 @@
 import eldoImg from "../assets/project_1.svg";
 import sweeteesImg from "../assets/project_2.svg";
-import sarabImg from "../assets/sarab1.png";
-import agcffImg from "../assets/AGCFF.png";
+import sarabImg from "../assets/sarab1.jpg";
+import agcffImg from "../assets/AGCFF.jpg";
 import championMindImg from "../assets/ChampionMind.svg";
 import eekadImg from "../assets/EeKad.png";
-import crimpingImg from "../assets/draxlmaier.png";
-import pilldispenserImg from "../assets/Smart Pill Dispenser.png";
+import crimpingImg from "../assets/draxlmaier.jpg";
+import pilldispenserImg from "../assets/Smart Pill Dispenser.jpg";
 
 export const projectAssets = {
   eldowallet: eldoImg,

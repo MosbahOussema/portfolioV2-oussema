@@ -195,6 +195,7 @@
   cursor: pointer;
   transition: all var(--transition-spring);
   color: var(--color-text-secondary);
+  font-family: var(--font-family);
 }
 
 .mywork-showmore:hover {
@@ -203,6 +204,12 @@
   color: var(--color-text);
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow);
+}
+
+.mywork-showmore:focus-visible {
+  outline: none;
+  border-color: rgba(127, 29, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(127, 29, 255, 0.18);
 }
 
 .mywork-showmore p {

@@ -27,7 +27,7 @@ function ProjectCard({
       <div className="project-card-inner">
         <div className="project-card-face project-card-front">
           <div className={`project-image-container${work.w_no === 6 ? " project-image-eekad" : ""}`}>
-            <img src={work.w_img} alt={work.w_name} />
+            <img src={work.w_img} alt={work.w_name} loading="lazy" decoding="async" />
           </div>
           <div className="project-front-shine" aria-hidden="true" />
           <ProjectInfo work={work} technologies={technologies} viewSiteLabel={viewSiteLabel} isMobile />

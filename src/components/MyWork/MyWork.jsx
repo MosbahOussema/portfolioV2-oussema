@@ -83,12 +83,16 @@ function MyWork() {
       </div>
 
       {mywork_data.length > displayCount && (
-        <div className="mywork-showmore reveal" onClick={() => setDisplayCount(prev => prev + 3)}>
+        <button
+          type="button"
+          className="mywork-showmore reveal"
+          onClick={() => setDisplayCount(prev => prev + 3)}
+        >
           <p>{t.work.showMore}</p>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
           </svg>
-        </div>
+        </button>
       )}
     </section>
   );

@@ -3,23 +3,27 @@ import { createPortal } from "react-dom";
 import { projectAssets } from "../../data/projects";
 import ExperienceArrow from "./ExperienceArrow";
 import useAnalytics from "../../hooks/useAnalytics";
+import useFocusTrap from "../../hooks/useFocusTrap";
 
 function ExperienceModal({ selectedJob, language, onClose }) {
   const { trackProjectLink } = useAnalytics();
+  const modalRef = useFocusTrap(Boolean(selectedJob), onClose);
+
   if (!selectedJob) return null;
 
   return createPortal(
     <div
       className="experience-modal-overlay"
       onClick={onClose}
-      aria-hidden="true"
     >
       <div
+        ref={modalRef}
         className="experience-modal-content"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="experience-modal-title"
+        tabIndex="-1"
       >
         <button
           className="experience-modal-close"
@@ -73,6 +77,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
                     alt={project.name}
                     className="modal-project-img"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="modal-project-details">

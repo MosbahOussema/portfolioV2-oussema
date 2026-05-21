@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "./Contact.css";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -41,7 +41,7 @@ function Contact() {
         contactConfig.emailjs.serviceId,
         contactConfig.emailjs.templateId,
         form.current,
-        contactConfig.emailjs.publicKey
+        { publicKey: contactConfig.emailjs.publicKey }
       )
       .then(
         () => {

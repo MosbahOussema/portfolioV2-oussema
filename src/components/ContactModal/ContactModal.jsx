@@ -4,11 +4,13 @@ import "./ContactModal.css";
 import { useTranslation } from "../../hooks/useTranslation";
 import { contactConfig, getMailtoUrl, getWhatsappUrl } from "../../config/contact";
 import useBodyScrollLock from "../../hooks/useBodyScrollLock";
+import useFocusTrap from "../../hooks/useFocusTrap";
 import useAnalytics from "../../hooks/useAnalytics";
 
 const ContactModal = ({ isOpen, onClose }) => {
   const t = useTranslation();
   const { trackContactItem } = useAnalytics();
+  const modalRef = useFocusTrap(isOpen, onClose);
   useBodyScrollLock(isOpen, { preserveNavbarPadding: true });
 
   if (!isOpen) return null;
@@ -37,14 +39,15 @@ const ContactModal = ({ isOpen, onClose }) => {
     <div
       className="contact-modal-overlay"
       onClick={onClose}
-      aria-hidden="true"
     >
       <div
+        ref={modalRef}
         className="contact-modal-content"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-modal-title"
+        tabIndex="-1"
       >
         <button
           className="contact-modal-close"
