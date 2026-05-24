@@ -28,38 +28,40 @@ function ExperienceModal({ selectedJob, language, onClose }) {
         aria-labelledby="experience-modal-title"
         tabIndex="-1"
       >
-        <button
-          className="experience-modal-close"
-          onClick={onClose}
-          aria-label={language === "fr" ? "Fermer" : "Close"}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <div className="experience-modal-header-row">
+          <div className="experience-modal-header">
+            <div className="experience-company-icon modal-icon">
+              {companyIcon ? (
+                <img
+                  src={companyIcon}
+                  alt=""
+                  className="experience-company-icon-image"
+                  loading="lazy"
+                />
+              ) : (
+                <span>{selectedJob.company.charAt(0)}</span>
+              )}
+            </div>
+            <div className="modal-header-text">
+              <h3 className="modal-role" id="experience-modal-title">{selectedJob.role}</h3>
+              <p className="modal-company">{selectedJob.company}</p>
+              <span className="modal-period">{selectedJob.period}</span>
+              {selectedJob.type && (
+                <span className="modal-job-type">{selectedJob.type}</span>
+              )}
+            </div>
+          </div>
 
-        <div className="experience-modal-header">
-          <div className="experience-company-icon modal-icon">
-            {companyIcon ? (
-              <img
-                src={companyIcon}
-                alt=""
-                className="experience-company-icon-image"
-                loading="lazy"
-              />
-            ) : (
-              <span>{selectedJob.company.charAt(0)}</span>
-            )}
-          </div>
-          <div className="modal-header-text">
-            <h3 className="modal-role" id="experience-modal-title">{selectedJob.role}</h3>
-            <p className="modal-company">{selectedJob.company}</p>
-            <span className="modal-period">{selectedJob.period}</span>
-            {selectedJob.type && (
-              <span className="modal-job-type">{selectedJob.type}</span>
-            )}
-          </div>
+          <button
+            className="experience-modal-close"
+            onClick={onClose}
+            aria-label={language === "fr" ? "Fermer" : "Close"}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
 
         {selectedJob.description && (
