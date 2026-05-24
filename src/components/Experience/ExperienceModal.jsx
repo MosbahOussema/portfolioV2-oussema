@@ -2,6 +2,7 @@
 import { createPortal } from "react-dom";
 import { projectAssets } from "../../data/projects";
 import ExperienceArrow from "./ExperienceArrow";
+import { getCompanyIcon } from "./companyIcons";
 import useAnalytics from "../../hooks/useAnalytics";
 import useFocusTrap from "../../hooks/useFocusTrap";
 
@@ -10,6 +11,8 @@ function ExperienceModal({ selectedJob, language, onClose }) {
   const modalRef = useFocusTrap(Boolean(selectedJob), onClose);
 
   if (!selectedJob) return null;
+
+  const companyIcon = getCompanyIcon(selectedJob.company);
 
   return createPortal(
     <div
@@ -38,7 +41,16 @@ function ExperienceModal({ selectedJob, language, onClose }) {
 
         <div className="experience-modal-header">
           <div className="experience-company-icon modal-icon">
-            <span>{selectedJob.company.charAt(0)}</span>
+            {companyIcon ? (
+              <img
+                src={companyIcon}
+                alt=""
+                className="experience-company-icon-image"
+                loading="lazy"
+              />
+            ) : (
+              <span>{selectedJob.company.charAt(0)}</span>
+            )}
           </div>
           <div className="modal-header-text">
             <h3 className="modal-role" id="experience-modal-title">{selectedJob.role}</h3>

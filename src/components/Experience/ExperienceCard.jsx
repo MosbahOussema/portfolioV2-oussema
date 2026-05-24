@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import ExperienceArrow from "./ExperienceArrow";
+import { getCompanyIcon } from "./companyIcons";
 
 function ExperienceCard({ job, index, totalJobs, language, onSelect }) {
+  const companyIcon = getCompanyIcon(job.company);
+
   return (
     <div
       className={`experience-card glass reveal delay-${index + 1}`}
@@ -20,7 +23,16 @@ function ExperienceCard({ job, index, totalJobs, language, onSelect }) {
       <div className="experience-card-header">
         <div className="experience-card-left">
           <div className="experience-company-icon">
-            <span>{job.company.charAt(0)}</span>
+            {companyIcon ? (
+              <img
+                src={companyIcon}
+                alt=""
+                className="experience-company-icon-image"
+                loading="lazy"
+              />
+            ) : (
+              <span>{job.company.charAt(0)}</span>
+            )}
           </div>
           <div>
             <h3 className="experience-role">{job.role}</h3>

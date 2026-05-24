@@ -126,6 +126,20 @@
   color: var(--color-primary-light);
 }
 
+.experience-company-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.experience-company-icon:has(.experience-company-icon-image) {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+}
+
 .experience-role {
   font-size: var(--font-size-base);
   font-weight: 700;
@@ -300,6 +314,12 @@
   border-radius: var(--radius-xl);
   background: rgba(127, 29, 255, 0.15);
   border: 1px solid rgba(127, 29, 255, 0.3);
+}
+
+.modal-icon:has(.experience-company-icon-image) {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-bg-elevated);
 }
 
 .modal-icon span {
