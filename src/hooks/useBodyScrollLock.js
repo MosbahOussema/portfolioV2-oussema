@@ -1,4 +1,6 @@
-import { useLayoutEffect, useRef, useCallback } from "react";
+import { useEffect, useLayoutEffect, useRef, useCallback } from "react";
+
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export const useBodyScrollLock = (isLocked, options = {}) => {
   const scrollLockY = useRef(null);
@@ -26,7 +28,7 @@ export const useBodyScrollLock = (isLocked, options = {}) => {
     html.style.scrollBehavior = prevScrollBehavior;
   }, []);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!isLocked || scrollLockY.current !== null) return undefined;
 
     scrollLockY.current = window.scrollY;

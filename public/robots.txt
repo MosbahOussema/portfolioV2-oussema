@@ -1,5 +1,9 @@
+# Public pages and rendering assets are crawlable by Google, Bing and AI search.
 User-agent: *
 Allow: /
-Disallow: /dist/
+
+# ChatGPT search crawler; this does not change the existing GPTBot training policy.
+User-agent: OAI-SearchBot
+Allow: /
 
 Sitemap: https://www.oussamamosbah.com/sitemap.xml

@@ -134,6 +134,11 @@
   display: block;
 }
 
+.experience-company-icon-image-astrolab {
+  object-position: left center;
+  background: #102327;
+}
+
 .experience-company-icon:has(.experience-company-icon-image) {
   padding: 0;
   overflow: hidden;

@@ -77,11 +77,12 @@ function FooterNewsletter({ t }) {
 
   return (
     <div className="footer-newsletter-col">
-      <h4 className="footer-col-title">{t.footer.connect}</h4>
+      <h2 className="footer-col-title">{t.footer.connect}</h2>
       <p className="footer-newsletter-text">{t.footer.newsletter}</p>
       <form className="footer-newsletter-form" onSubmit={handleSubscribe}>
         <input
           type="email"
+          aria-label={t.contact.form.email}
           placeholder={t.footer.emailPlaceholder}
           className="footer-newsletter-input"
           value={email}
@@ -89,7 +90,7 @@ function FooterNewsletter({ t }) {
           required
           disabled={isSubmitting}
         />
-        <button type="submit" className="footer-newsletter-btn" disabled={isSubmitting}>
+        <button type="submit" className="footer-newsletter-btn" disabled={isSubmitting} aria-label={t.footer.subscribe}>
           {isSubmitting ? (
             <span className="footer-submit-spinner"></span>
           ) : (

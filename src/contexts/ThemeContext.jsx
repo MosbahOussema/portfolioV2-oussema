@@ -30,9 +30,13 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(getInitialTheme);
+  // Keep the first client render identical to the pre-rendered markup.
+  const [theme, setTheme] = useState(null);
+
+  useEffect(() => { setTheme(getInitialTheme()); }, []);
 
   useEffect(() => {
+    if (!theme) return;
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
 
@@ -48,7 +52,7 @@ export const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme: theme || "dark", toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

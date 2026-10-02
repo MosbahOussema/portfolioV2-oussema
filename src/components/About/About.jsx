@@ -1,5 +1,5 @@
 import "./About.css";
-import profile_img from "../../assets/me1.jpg";
+import profile_img from "../../assets/generated/oussama-mosbah-about.webp";
 import { useTranslation } from "../../hooks/useTranslation";
 import useScrollReveal from "../../hooks/useScrollReveal";
 
@@ -25,7 +25,9 @@ function About() {
           <div className="about-image-wrapper">
             <img
               src={profile_img}
-              alt="Oussama Mosbah"
+              alt={`${t.hero.name} — ${t.hero.subtitle}`}
+              width="600"
+              height="803"
               className="about-image"
               loading="lazy"
               decoding="async"

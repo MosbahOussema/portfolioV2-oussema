@@ -4,20 +4,28 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/optimize-images.mjs",
     "dev": "vite",
-    "build": "vite build",
+    "prebuild": "node scripts/optimize-images.mjs",
+    "build": "vite build && node scripts/prerender.mjs",
+    "test:seo": "node --test scripts/seo.test.mjs",
+    "test:production-seo": "node scripts/check-production-seo.mjs",
+    "test:e2e": "npm run build && playwright test",
     "lint": "eslint .",
     "audit": "npm audit",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@fontsource-variable/plus-jakarta-sans": "5.3.0",
+    "motion": "^12.43.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.63.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
@@ -26,7 +34,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "vite": "^6.0.5"
   }
 }

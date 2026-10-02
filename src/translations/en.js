@@ -11,7 +11,7 @@ export const en = {
     greeting: "Hello,",
     title: "I am",
     name: "Oussama Mosbah",
-    subtitle: "Frontend Developer",
+    subtitle: "Frontend Engineer",
     roles: ["Frontend Dev", "React Expert", "UI Integrator"],
     description:
       "Delivering efficient, scalable and innovative web applications. Building high-performance interfaces with modern technologies.",
@@ -22,7 +22,7 @@ export const en = {
   about: {
     title: "About Me",
     description1:
-      "I am a skilled Frontend Developer with over three years of experience, contributing to the success of leading organizations by delivering high-quality, user-centric solutions.",
+      "I am a skilled Frontend Engineer with over three years of experience, contributing to the success of leading organizations by delivering high-quality, user-centric solutions.",
     description2:
       "My passion for frontend development is demonstrated through both my extensive experience and the unwavering commitment and enthusiasm I bring to every project.",
     skills: {
@@ -322,11 +322,35 @@ export const en = {
     ],
   },
   work: {
+    imagePreview: "Project preview",
+    logo: "Logo",
     title: "My Projects",
-    showMore: "Show More",
+    navigation: "Project carousel",
+    page: "Page",
+    of: "of",
+    previousPage: "Previous projects",
+    nextPage: "Next projects",
     viewSite: "→ View site",
   },
   projects: {
+    astrolab: {
+      name: "Astrolab",
+      description:
+        "Responsive Next.js landing page that makes Astrolab's technology, AI and automation services easy to explore, with clear paths to case studies and contact.",
+      technologies: "Next.js, Responsive Design, AI-assisted Development, Landing Page",
+    },
+    talinty: {
+      name: "Talinty",
+      description:
+        "Landing page that explains Talinty's AI-assisted recruiting platform, from skills-based candidate evaluation to team collaboration, with a clear path to book a demo.",
+      technologies: "Next.js, Landing Page, Talent Acquisition",
+    },
+    ciceria: {
+      name: "Ciceria",
+      description:
+        "React manager interface that brings legal-formality cases, documents and data checks into one workflow. The V2 design plans OCR/AI and INPI/JALPRO integrations.",
+      technologies: "React, Manager UI, OCR/AI (V2), REST API (V2)",
+    },
     eldowallet: {
       name: "Eldo Wallet",
       description:
@@ -399,7 +423,7 @@ export const en = {
   },
   footer: {
     description:
-      "I am a frontend developer based in Sousse, Tunisia, with 3 years of experience working at Astrolab Agency, a company specializing in innovative web solutions.",
+      "I am a frontend engineer based in Sousse, Tunisia, with 3 years of experience working at Astrolab Agency, a company specializing in innovative web solutions.",
     rights: "Built with ❤ by © Oussama Mosbah 2025. All rights reserved.",
     terms: "Terms of Services",
     privacy: "Privacy Policy",

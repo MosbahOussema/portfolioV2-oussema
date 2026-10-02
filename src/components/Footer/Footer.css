@@ -125,6 +125,12 @@
   gap: 12px;
 }
 
+/* Preserve the previous button metrics for semantic section links. */
+.footer-section-links a {
+  display: inline-block;
+  line-height: normal;
+}
+
 .footer-links li a,
 .footer-links li button {
   font-size: var(--font-size-sm);
@@ -232,8 +238,12 @@
 
 .footer-copyright {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: #85858d;
   letter-spacing: 0.02em;
+}
+
+:root[data-theme="light"] .footer-copyright {
+  color: #636373;
 }
 
 /* --- Responsive --- */

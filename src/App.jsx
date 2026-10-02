@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+/* eslint-disable react/prop-types */
 import NavBar from "./components/NavBar/NavBar";
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
@@ -9,24 +9,16 @@ import Solutions from "./components/Solutions/Solutions";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import { useLanguage } from "./contexts/LanguageContext";
+import Seo from "./components/Seo/Seo";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function LangSync() {
-  const { language } = useLanguage();
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
-  return null;
-}
-
-function App() {
+function App({ initialLanguage = "en" }) {
   return (
     <ThemeProvider>
-      <LanguageProvider>
-        <LangSync />
+      <LanguageProvider initialLanguage={initialLanguage}>
+        <Seo />
         <div className="app">
           <div className="global-bg" aria-hidden="true">
             <div className="global-beam global-beam--1"></div>
@@ -43,13 +35,15 @@ function App() {
           </div>
 
           <NavBar />
-          <Hero />
-          <About />
-          <Experience />
-          <Services />
-          <MyWork />
-          <Solutions />
-          <Contact />
+          <main id="main-content">
+            <Hero />
+            <About />
+            <Experience />
+            <Services />
+            <MyWork />
+            <Solutions />
+            <Contact />
+          </main>
           <Footer />
 
           <ToastContainer

@@ -4,6 +4,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import { translations } from "../../translations";
 import useScrollToSection from "../../hooks/useScrollToSection";
+import { languagePaths } from "../../config/seo";
 
 function SunIcon() {
   return (
@@ -32,31 +33,41 @@ function NavBar() {
   const scrollToSection = useScrollToSection(() => setIsMenuOpen(false));
 
   useEffect(() => {
+    let frameId = null;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (frameId !== null) return;
 
-      const sections = ["home", "about", "experience", "services", "work", "solutions", "contact"];
-      const scrollPosition = window.scrollY + 150;
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        setIsScrolled(window.scrollY > 50);
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
+        const sections = ["home", "about", "experience", "services", "work", "solutions", "contact"];
+        const scrollPosition = window.scrollY + 150;
 
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            break;
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const offsetTop = element.offsetTop;
+            const offsetHeight = element.offsetHeight;
+
+            if (
+              scrollPosition >= offsetTop &&
+              scrollPosition < offsetTop + offsetHeight
+            ) {
+              setActiveSection(section);
+              break;
+            }
           }
         }
-      }
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId !== null) window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -82,31 +93,32 @@ function NavBar() {
   ];
 
   return (
-    <nav className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`} id="navbar">
+    <nav className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`} id="navbar" aria-label={language === "fr" ? "Navigation principale" : "Main navigation"}>
       {/* Logo */}
-      <button
-        type="button"
+      <a
+        href="#home"
         className="nav-logo"
-        onClick={() => scrollToSection("home")}
+        onClick={(event) => scrollToSection("home", event)}
         aria-label={language === "fr" ? "Retour à l'accueil" : "Back to home"}
       >
         <div className="nav-logo-icon">
           <span className="logo-letter">O</span>
           <span className="logo-dot"></span>
         </div>
-      </button>
+      </a>
 
       {/* Desktop Nav Links */}
       <ul className={`nav-menu ${isMenuOpen ? "nav-menu--open" : ""}`}>
         {navItems.map((item) => (
           <li key={item.id} className="nav-menu-item">
-            <button
-              onClick={() => scrollToSection(item.id)}
+            <a
+              href={`#${item.id}`}
+              onClick={(event) => scrollToSection(item.id, event)}
               className={`nav-link ${activeSection === item.id ? "nav-link--active" : ""}`}
             >
               {item.label}
               {activeSection === item.id && <span className="nav-link-indicator"></span>}
-            </button>
+            </a>
           </li>
         ))}
       </ul>
@@ -124,23 +136,26 @@ function NavBar() {
           </span>
         </button>
 
-        <button
+        <a
           className="nav-lang-toggle"
+          href={languagePaths[language === "en" ? "fr" : "en"]}
+          hrefLang={language === "en" ? "fr" : "en"}
           onClick={toggleLanguage}
-          aria-label="Toggle language"
+          aria-label={language === "en" ? "ENFR — Switch to French" : "ENFR — Passer en anglais"}
           title={`Switch to ${language === "en" ? "French" : "English"}`}
         >
           <span className={`lang-thumb ${language === "fr" ? "lang-thumb--fr" : ""}`} />
           <span className={`lang-text ${language === "en" ? "lang-text--active" : ""}`}>EN</span>
           <span className={`lang-text ${language === "fr" ? "lang-text--active" : ""}`}>FR</span>
-        </button>
+        </a>
 
-        <button
+        <a
+          href="#contact"
           className="btn btn-primary nav-contact-btn"
-          onClick={() => scrollToSection("contact")}
+          onClick={(event) => scrollToSection("contact", event)}
         >
           {t.nav.contact}
-        </button>
+        </a>
 
         {/* Hamburger */}
         <button

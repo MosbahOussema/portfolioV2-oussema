@@ -1,8 +1,45 @@
-.mywork-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
-  margin-bottom: var(--space-2xl);
+.mywork {
+  scroll-margin-top: 100px;
+}
+
+.mywork-carousel {
+  --coverflow-height: 340px;
+  position: relative;
+}
+
+.mywork-coverflow {
+  --coverflow-step: clamp(245px, 26vw, 325px);
+  position: relative;
+  height: var(--coverflow-height);
+  overflow: hidden;
+  perspective: 1200px;
+  touch-action: pan-y;
+}
+
+.mywork-coverflow-deck {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.mywork-carousel:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 4px;
+}
+
+.mywork-coverflow-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(34vw, 370px);
+  max-width: 90%;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+}
+
+.mywork-coverflow-slide:not([aria-hidden="true"]) {
+  will-change: transform, opacity;
 }
 
 .mywork-format {
@@ -93,6 +130,19 @@
   object-position: center;
 }
 
+.project-image-logo {
+  display: grid;
+  place-items: center;
+  background: #1c1c28;
+}
+
+.project-image-logo img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  object-position: center;
+}
+
 .mywork-format.is-active .project-image-container img,
 .mywork-format:focus-visible .project-image-container img {
   transform: scale(1.06);
@@ -169,6 +219,7 @@
   display: inline-flex;
   align-items: center;
   width: fit-content;
+  min-height: 24px;
   font-size: 12px;
   font-weight: 700;
   color: var(--color-accent);
@@ -180,63 +231,148 @@
   gap: 4px;
 }
 
-/* --- Show More Button --- */
-.mywork-showmore {
+/* --- Carousel navigation --- */
+.mywork-carousel-arrow {
+  position: absolute;
+  top: calc(var(--coverflow-height) / 2 - 22px);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 50%;
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+}
+
+.mywork-carousel-arrow:hover {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-primary-light);
+  transform: scale(1.06);
+}
+
+.mywork-carousel-arrow:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+}
+
+.mywork-carousel-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mywork-carousel-arrow.is-previous {
+  left: 0;
+}
+
+.mywork-carousel-arrow.is-next {
+  right: 0;
+}
+
+.mywork-carousel-dot:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+}
+
+.mywork-carousel-dots {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 0 auto;
-  padding: 12px 28px;
-  width: fit-content;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--color-border-subtle);
-  background: var(--color-soft-surface);
+  gap: 0;
+  margin: 18px auto 0;
+}
+
+.mywork-carousel-dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  transition: all var(--transition-spring);
-  color: var(--color-text-secondary);
-  font-family: var(--font-family);
 }
 
-.mywork-showmore:hover {
-  background: rgba(127, 29, 255, 0.1);
-  border-color: rgba(127, 29, 255, 0.3);
-  color: var(--color-text);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow);
+.mywork-carousel-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--color-text-secondary);
+  opacity: 0.45;
+  transform: translate(-50%, -50%);
+  transition: width 0.26s ease, background 0.26s ease, opacity 0.26s ease;
 }
 
-.mywork-showmore:focus-visible {
-  outline: none;
-  border-color: rgba(127, 29, 255, 0.45);
-  box-shadow: 0 0 0 3px rgba(127, 29, 255, 0.18);
+.mywork-carousel-dot.is-active::after {
+  width: 25px;
+  background: var(--color-primary-light);
+  opacity: 1;
 }
 
-.mywork-showmore p {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+@media (prefers-reduced-motion: reduce) {
+  .mywork-carousel-dot::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mywork-coverflow-slide {
+    width: min(48vw, 370px);
+  }
 }
 
 /* --- Responsive --- */
 @media (max-width: 1024px) {
-  .mywork-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-  }
-
   .mywork-format {
     height: 280px;
   }
 }
 
 @media (max-width: 768px) {
-  .mywork-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-md);
+  .mywork-carousel {
+    --coverflow-height: 300px;
+  }
+
+  .mywork-coverflow {
+    --coverflow-step: clamp(290px, 78vw, 340px);
+  }
+
+  .mywork-coverflow-slide {
+    width: min(82vw, 340px);
   }
 
   .mywork-format {
     height: 260px;
+  }
+
+  .mywork-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0 16px;
+  }
+
+  .mywork-carousel-arrow {
+    position: static;
+    flex: 0 0 44px;
+  }
+
+  .mywork-carousel-dots {
+    margin: 0;
   }
 
   .project-info {
@@ -255,8 +391,8 @@
 }
 
 @media (max-width: 640px) {
-  .mywork-container {
-    grid-template-columns: 1fr;
+  .mywork-carousel {
+    --coverflow-height: 280px;
   }
 
   .mywork-format {
@@ -265,6 +401,10 @@
 }
 
 @media (max-width: 480px) {
+  .mywork-carousel {
+    --coverflow-height: 260px;
+  }
+
   .mywork-format {
     height: 220px;
   }
@@ -295,6 +435,13 @@
 
   .project-link {
     font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mywork-carousel-controls {
+    gap: 0;
+    padding: 0;
   }
 }
 
@@ -376,11 +523,6 @@
 }
 
 @media (max-width: 1024px) {
-  .mywork-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-  }
-
   .mywork-format {
     height: 280px;
     min-height: 0;
@@ -512,18 +654,7 @@
   }
 }
 
-@media (max-width: 900px) {
-  .mywork-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 768px) {
-  .mywork-container {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-
   .mywork-format {
     height: 260px;
   }

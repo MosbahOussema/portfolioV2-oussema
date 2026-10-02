@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Hero.css";
-import profile_img from "../../assets/hero4.jpg";
+import profile_img from "../../assets/generated/oussama-mosbah-portrait.webp";
 import resumePdfEn from "../../assets/Cv_Oussama_Mosbah_En .pdf";
 import resumePdfFr from "../../assets/Cv_Oussama_Mosbah_Fr .pdf";
 import ContactModal from "../ContactModal/ContactModal";
@@ -10,36 +10,73 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 import useTypewriter from "../../hooks/useTypewriter";
 import useAnalytics from "../../hooks/useAnalytics";
 
+const roleIcons = [
+  <svg key="code" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
+  <svg key="layers" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
+  <svg key="layout" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>,
+];
+
+// These internal components receive values directly from the app's translation data.
+/* eslint-disable react/prop-types */
+function HeroSubtitle({ text }) {
+  const displayText = useTypewriter(text);
+
+  return (
+    <p className="hero-subtitle">
+      <span className="sr-only">{text}</span>
+      <span className="hero-subtitle-line"></span>
+      <span className="hero-subtitle-text" aria-hidden="true">
+        {displayText}
+        <span className="typewriter-cursor">|</span>
+      </span>
+    </p>
+  );
+}
+
+function RoleCards({ roles }) {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [roles.length]);
+
+  return (
+    <div className="hero-stat-cards">
+      {roles.map((role, index) => (
+        <button
+          type="button"
+          key={role}
+          className={`hero-stat-card glass ${index === roleIndex ? "hero-stat-card--active" : ""}`}
+          onClick={() => setRoleIndex(index)}
+          aria-pressed={index === roleIndex}
+          aria-label={role}
+        >
+          <div className="hero-stat-icon">{roleIcons[index]}</div>
+          <span className="hero-stat-label">{role}</span>
+          <div className="hero-stat-glow"></div>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [roleIndex, setRoleIndex] = useState(0);
   const { language } = useLanguage();
   const t = useTranslation();
   const sectionRef = useScrollReveal();
 
   const resumePdf = language === "en" ? resumePdfEn : resumePdfFr;
-  const displayText = useTypewriter(t.hero.subtitle);
   const { trackResumeClick, trackConnectClick } = useAnalytics();
-
-  // Rotate role tags
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % t.hero.roles.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [t.hero.roles.length]);
-
-  const roleIcons = [
-    <svg key="code" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
-    <svg key="layers" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
-    <svg key="layout" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>,
-  ];
 
   return (
     <section className="hero" id="home" ref={sectionRef}>
       <div className="hero-container">
         {/* Left Column — Title & CTA */}
-        <div className="hero-left reveal-left">
+        <div className="hero-left reveal-left revealed">
           {/* Status badge */}
           <div className="hero-status-badge">
             <span className="status-dot"></span>
@@ -51,13 +88,7 @@ function Hero() {
             <span className="hero-title-line">{t.hero.title}</span>
             <span className="hero-name">{t.hero.name}</span>
           </h1>
-          <p className="hero-subtitle">
-            <span className="hero-subtitle-line"></span>
-            <span className="hero-subtitle-text">
-              {displayText}
-              <span className="typewriter-cursor">|</span>
-            </span>
-          </p>
+          <HeroSubtitle text={t.hero.subtitle} />
           <p className="hero-description">{t.hero.description}</p>
 
           <div className="hero-actions">
@@ -85,12 +116,14 @@ function Hero() {
         </div>
 
         {/* Right Column — Profile Card + Role Stats */}
-        <div className="hero-right reveal-right">
+        <div className="hero-right reveal-right revealed">
           <div className="hero-profile-card glass">
             <div className="hero-profile-image-wrapper">
               <img
                 src={profile_img}
-                alt="Oussama Mosbah"
+                alt={`${t.hero.name} — ${t.hero.subtitle}`}
+                width="486"
+                height="430"
                 className="hero-profile-image"
                 decoding="async"
                 fetchPriority="high"
@@ -100,30 +133,13 @@ function Hero() {
             </div>
 
             <div className="hero-profile-info">
-              <h2 className="hero-profile-name">{t.hero.name}</h2>
+              <p className="hero-profile-name">{t.hero.name}</p>
               <p className="hero-profile-role">{t.hero.subtitle}</p>
             </div>
           </div>
 
           {/* Role Stat Cards */}
-          <div className="hero-stat-cards">
-            {t.hero.roles.map((role, index) => (
-              <button
-                type="button"
-                key={index}
-                className={`hero-stat-card glass ${index === roleIndex ? "hero-stat-card--active" : ""}`}
-                onClick={() => setRoleIndex(index)}
-                aria-pressed={index === roleIndex}
-                aria-label={role}
-              >
-                <div className="hero-stat-icon">
-                  {roleIcons[index]}
-                </div>
-                <span className="hero-stat-label">{role}</span>
-                <div className="hero-stat-glow"></div>
-              </button>
-            ))}
-          </div>
+          <RoleCards roles={t.hero.roles} />
         </div>
       </div>
 

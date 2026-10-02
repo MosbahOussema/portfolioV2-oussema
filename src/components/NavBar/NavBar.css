@@ -91,6 +91,7 @@
 }
 
 .nav-link {
+  line-height: normal;
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -240,6 +241,7 @@
 }
 
 .nav-contact-btn {
+  line-height: normal;
   padding: 10px 24px;
   font-size: var(--font-size-sm);
 }

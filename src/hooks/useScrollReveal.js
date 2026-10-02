@@ -19,6 +19,10 @@ export const useScrollReveal = (options = {}) => {
     const element = ref.current;
     if (!element) return;
 
+    // Static content is readable without JavaScript. Enable animation only once ready.
+    if (!("IntersectionObserver" in window)) return;
+    element.classList.add('reveal-ready');
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

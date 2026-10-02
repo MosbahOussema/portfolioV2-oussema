@@ -27,7 +27,7 @@ function ExperienceCard({ job, index, totalJobs, language, onSelect }) {
               <img
                 src={companyIcon}
                 alt=""
-                className="experience-company-icon-image"
+                className={`experience-company-icon-image${job.company.toLowerCase().includes("astrolab") ? " experience-company-icon-image-astrolab" : ""}`}
                 loading="lazy"
               />
             ) : (

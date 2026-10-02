@@ -1,8 +1,8 @@
-import astrolabIcon from "../../assets/astrolabIcon.jfif";
+import astrolabIcon from "../../assets/astrolab-navbar.svg";
 import nexymIcon from "../../assets/nexymIcon.jfif";
 import zenhostingIcon from "../../assets/zenhostingIcon.jfif";
 import draxlmaierIcon from "../../assets/draxlmaier.jpg";
-import tccIcon from "../../assets/tccIcon.png";
+import tccIcon from "../../assets/generated/tcc-informatique.webp";
 
 const companyIconMatchers = [
   { match: "astrolab", icon: astrolabIcon, label: "Astrolab Agency" },

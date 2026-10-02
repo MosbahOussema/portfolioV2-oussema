@@ -35,7 +35,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
                 <img
                   src={companyIcon}
                   alt=""
-                  className="experience-company-icon-image"
+                  className={`experience-company-icon-image${selectedJob.company.toLowerCase().includes("astrolab") ? " experience-company-icon-image-astrolab" : ""}`}
                   loading="lazy"
                 />
               ) : (

@@ -24,17 +24,17 @@ function Footer() {
         </div>
 
         <div className="footer-links-col">
-          <h4 className="footer-col-title">{t.footer.quickLinks}</h4>
-          <ul className="footer-links">
-            <li><button onClick={() => scrollToSection("about")}>{t.nav.about}</button></li>
-            <li><button onClick={() => scrollToSection("experience")}>{t.nav.experience}</button></li>
-            <li><button onClick={() => scrollToSection("work")}>{t.nav.portfolio}</button></li>
-            <li><button onClick={() => scrollToSection("contact")}>{t.nav.contact}</button></li>
+          <h2 className="footer-col-title">{t.footer.quickLinks}</h2>
+          <ul className="footer-links footer-section-links">
+            <li><a href="#about" onClick={(event) => scrollToSection("about", event)}>{t.nav.about}</a></li>
+            <li><a href="#experience" onClick={(event) => scrollToSection("experience", event)}>{t.nav.experience}</a></li>
+            <li><a href="#work" onClick={(event) => scrollToSection("work", event)}>{t.nav.portfolio}</a></li>
+            <li><a href="#contact" onClick={(event) => scrollToSection("contact", event)}>{t.nav.contact}</a></li>
           </ul>
         </div>
 
         <div className="footer-links-col">
-          <h4 className="footer-col-title">{t.footer.socialMedia}</h4>
+          <h2 className="footer-col-title">{t.footer.socialMedia}</h2>
           <SocialTextLinks />
         </div>
 

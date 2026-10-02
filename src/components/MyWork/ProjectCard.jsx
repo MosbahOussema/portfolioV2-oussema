@@ -14,7 +14,8 @@ function ProjectCard({
   const isActive = activeProject === index;
 
   return (
-    <article
+    <div
+      id={`project-${work.id}`}
       className={`mywork-format reveal revealed${isActive ? " is-active" : ""}`}
       tabIndex="0"
       role="button"
@@ -24,10 +25,10 @@ function ProjectCard({
       onKeyDown={(event) => onKeyDown(event, index)}
       onBlur={(event) => onBlur(event, index)}
     >
-      <div className="project-card-inner">
+      <article className="project-card-inner">
         <div className="project-card-face project-card-front">
-          <div className={`project-image-container${work.w_no === 6 ? " project-image-eekad" : ""}`}>
-            <img src={work.w_img} alt={work.w_name} loading="lazy" decoding="async" />
+          <div className={`project-image-container${work.id === "eekad" ? " project-image-eekad" : ""}${work.w_isLogo ? " project-image-logo" : ""}`}>
+            <img src={work.w_img} alt={work.w_imageAlt} loading="lazy" decoding="async" />
           </div>
           <div className="project-front-shine" aria-hidden="true" />
           <ProjectInfo work={work} technologies={technologies} viewSiteLabel={viewSiteLabel} isMobile />
@@ -36,7 +37,7 @@ function ProjectCard({
         <div className="project-card-face project-card-back">
           <ProjectInfo work={work} technologies={technologies} viewSiteLabel={viewSiteLabel} />
         </div>
-      </div>
+      </article>
 
       {isActive && (
         <div className="project-mobile-panel">
@@ -46,7 +47,7 @@ function ProjectCard({
           <ProjectLink work={work} viewSiteLabel={viewSiteLabel} />
         </div>
       )}
-    </article>
+    </div>
   );
 }
 
@@ -81,6 +82,7 @@ function ProjectLink({ work, viewSiteLabel }) {
       target="_blank"
       rel="noreferrer"
       className="project-link"
+      aria-label={`${viewSiteLabel} — ${work.w_name}`}
       onClick={(event) => {
         event.stopPropagation();
         trackProjectLink(work.w_name, work.w_link);
