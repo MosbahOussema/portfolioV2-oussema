@@ -50,10 +50,52 @@ export const en = {
         role: "Frontend Developer",
         period: "Jan 2023 – Present",
         description:
-          "Delivered production-grade SaaS, fintech, and e-learning web applications across four client missions at Astrolab Agency. Built dual-portal Manager/Admin interfaces with JWT/RBAC authentication, Stripe and REST API integrations, and maintained high code quality through Agile ceremonies, peer reviews, and AI-assisted development (Cursor, Claude) on Sweetees, AGCFF, Champion Mind, and Eldo Wallet.",
-        tags: ["ReactJS", "Material UI", "TypeScript", "Stripe API", "REST API", "GitLab", "ClickUp"],
+          "Frontend development across seven projects at Astrolab Agency: SaaS, fintech and e-learning applications, the Astrolab and Talinty landing pages, and Ciceria's management interface. Built responsive React and Next.js interfaces, integrated APIs and payments, and worked with code reviews, Agile practices and AI-assisted development where relevant.",
+        tags: ["ReactJS", "Next.js", "TypeScript", "Material UI", "Stripe API", "REST API", "GitLab", "ClickUp"],
         type: "Full-time",
         projects: [
+          {
+            id: "astrolab",
+            name: "Astrolab",
+            role: "Frontend Developer",
+            description:
+              "Responsive landing page presenting Astrolab's technology, AI and automation services, with clear paths to case studies and contact.",
+            tech: ["Next.js", "Responsive design", "AI-assisted development"],
+            achievements: [
+              "Built a Next.js landing page organized around services, case studies and contact opportunities.",
+              "Adapted the sections and navigation for mobile and desktop screens.",
+              "Used AI tools to support frontend development and interface iteration."
+            ],
+            link: "https://astrolab.co/fr/"
+          },
+          {
+            id: "talinty",
+            name: "Talinty",
+            role: "Frontend Developer",
+            description:
+              "Landing page explaining Talinty's AI-assisted recruitment platform, from skills evaluation to team collaboration, with a direct path to book a demo.",
+            tech: ["Next.js", "Responsive design", "Landing page"],
+            achievements: [
+              "Developed a clear presentation of the recruitment workflow and the platform's value.",
+              "Highlighted candidate evaluation steps and calls to action leading to the demo.",
+              "Created a responsive interface for reading on mobile and desktop."
+            ],
+            link: "https://talinty.com/en"
+          },
+          {
+            id: "ciceria",
+            name: "Ciceria",
+            role: "Frontend Developer",
+            description:
+              "React manager interface bringing legal-formality cases, documents and data checks into a single workflow.",
+            tech: ["React", "Manager interface", "Document management"],
+            achievements: [
+              "Organized case tracking, documents and data checks into a coherent management interface.",
+              "Designed a workflow that makes each legal-formality step easier for users to follow.",
+              "The V2 design plans OCR/AI and INPI/JALPRO integrations to extend the legal-formality workflow."
+            ],
+            link: "https://app.ciceria.fr/auth/signin"
+          },
           {
             id: "sweetees",
             name: "Sweetees Gift & Ticket",

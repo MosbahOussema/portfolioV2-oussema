@@ -121,6 +121,55 @@ test('Astrolab, Talinty and Ciceria are visible, linked and show their local log
   await expect(page.locator('#project-ciceria')).toContainText('API REST (V2)');
 });
 
+test('Astrolab experience includes the three new projects in both languages', async ({ page }) => {
+  for (const [path, expectedText] of [
+    ['/', 'seven projects'],
+    ['/fr/', 'sept projets'],
+  ]) {
+    await page.goto(path);
+    const astrolabJob = page.locator('#experience [role="button"][aria-label*="Astrolab Agency"]');
+    await expect(astrolabJob).toContainText(expectedText);
+    await astrolabJob.click();
+
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('.modal-project-card')).toHaveCount(7);
+    for (const [name, url] of [
+      ['Astrolab', 'https://astrolab.co/fr/'],
+      ['Talinty', 'https://talinty.com/en'],
+      ['Ciceria', 'https://app.ciceria.fr/auth/signin'],
+    ]) {
+      const project = dialog.locator('.modal-project-card').filter({ has: page.getByRole('heading', { name, exact: true }) });
+      await expect(project).toHaveCount(1);
+      await expect(project.locator('.modal-project-link')).toHaveAttribute('href', url);
+      const logo = project.locator('.modal-project-img--logo');
+      await expect.poll(() => logo.evaluate((img) => img.complete && img.naturalWidth > 0)).toBe(true);
+      await expect(logo).toHaveCSS('object-fit', 'contain');
+    }
+    await expect(dialog.locator('.modal-project-card').filter({ hasText: 'Ciceria' })).toContainText('V2');
+    await page.keyboard.press('Escape');
+    await expect(dialog).toHaveCount(0);
+  }
+});
+
+test('light theme carousel is readable on desktop and mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Switch to light mode' }).click();
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  await expect(page.locator('.mywork-coverflow-slide').nth(1)).toHaveCSS('opacity', '1');
+  await expect(page.locator('#project-talinty .project-card-front')).not.toHaveCSS('box-shadow', 'none');
+  await page.locator('#work').screenshot({ path: 'qa-results/light-carousel-desktop.png' });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  await page.locator('#work').screenshot({ path: 'qa-results/light-carousel-mobile.png' });
+  await page.getByRole('button', { name: 'Next projects' }).click();
+  await expect(page.locator('.mywork-coverflow-slide').nth(1)).toHaveAttribute('data-position', 'active');
+  await page.locator('#project-talinty').click();
+  await expect(page.locator('#project-talinty .project-mobile-panel')).toBeVisible();
+});
+
 test('coverflow centers each project while preserving the original card flip', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');

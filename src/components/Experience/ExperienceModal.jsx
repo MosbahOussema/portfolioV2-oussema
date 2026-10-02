@@ -89,7 +89,7 @@ function ExperienceModal({ selectedJob, language, onClose }) {
                   <img
                     src={projectAssets[project.id]}
                     alt={project.name}
-                    className="modal-project-img"
+                    className={`modal-project-img${["astrolab", "talinty", "ciceria"].includes(project.id) ? " modal-project-img--logo" : ""}`}
                     loading="lazy"
                     decoding="async"
                   />

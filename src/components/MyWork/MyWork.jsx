@@ -4,17 +4,18 @@ import "./MyWork.css";
 import getMyWorkData from "../../assets/mywork_data";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ProjectCard from "./ProjectCard";
 
-const getSlideVisual = (offset) => {
+const getSlideVisual = (offset, theme = "dark") => {
   const distance = Math.abs(offset);
   const direction = Math.sign(offset);
   const slot = direction * (distance === 0 ? 0 : distance === 1 ? 1 : distance === 2 ? 1.68 : 2.3);
   const depth = distance === 0 ? 0 : distance === 1 ? -110 : -210;
   const rotation = distance === 0 ? 0 : direction * -48;
   const scale = distance === 0 ? 1 : distance === 1 ? 0.88 : 0.76;
-  const opacity = distance > 2 ? 0 : distance === 2 ? 0.4 : distance === 1 ? 0.78 : 1;
+  const opacity = distance > 2 ? 0 : distance === 2 ? (theme === "light" ? 0.65 : 0.4) : distance === 1 ? (theme === "light" ? 1 : 0.78) : 1;
 
   return {
     transform: `translate(-50%, -50%) translateX(calc(${slot} * var(--coverflow-step))) translateZ(${depth}px) rotateY(${rotation}deg) scale(${scale})`,
@@ -30,23 +31,25 @@ const getCircularOffset = (index, activeIndex, count) => {
 function MyWork() {
   const t = useTranslation();
   const { language } = useLanguage();
+  const { theme } = useTheme();
   const mywork_data = getMyWorkData(language);
   const sectionRef = useScrollReveal();
   const [activeProject, setActiveProject] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const slideRefs = useRef([]);
   const slideAnimations = useRef([]);
-  const lastIndex = useRef(0);
+  const lastVisualState = useRef("0:dark");
   const touchStart = useRef(null);
 
   useEffect(() => {
-    if (lastIndex.current === activeIndex) return;
-    lastIndex.current = activeIndex;
+    const visualState = `${activeIndex}:${theme}`;
+    if (lastVisualState.current === visualState) return;
+    lastVisualState.current = visualState;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     slideRefs.current.forEach((slide, index) => {
       if (!slide) return;
-      const { transform, opacity } = getSlideVisual(getCircularOffset(index, activeIndex, mywork_data.length));
+      const { transform, opacity } = getSlideVisual(getCircularOffset(index, activeIndex, mywork_data.length), theme);
       const startTransform = getComputedStyle(slide).transform;
       const startOpacity = getComputedStyle(slide).opacity;
       slideAnimations.current[index]?.cancel();
@@ -69,7 +72,7 @@ function MyWork() {
         slideAnimations.current[index] = null;
       });
     });
-  }, [activeIndex, mywork_data.length]);
+  }, [activeIndex, mywork_data.length, theme]);
 
   useEffect(() => () => {
     slideAnimations.current.forEach((animation) => animation?.cancel());
@@ -155,7 +158,7 @@ function MyWork() {
               const technologies = work.w_technologies
                 ? work.w_technologies.split(",").map((tech) => tech.trim())
                 : [];
-              const initialVisual = getSlideVisual(getCircularOffset(index, 0, mywork_data.length));
+              const initialVisual = getSlideVisual(getCircularOffset(index, 0, mywork_data.length), theme);
 
               return (
                 <div

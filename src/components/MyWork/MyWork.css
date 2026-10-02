@@ -321,6 +321,24 @@
   opacity: 1;
 }
 
+:root[data-theme="light"] .project-card-face {
+  border-color: rgba(76, 29, 149, 0.2);
+  box-shadow: 0 12px 30px rgba(31, 24, 56, 0.14);
+}
+
+:root[data-theme="light"] .mywork-carousel-arrow {
+  border-color: rgba(76, 29, 149, 0.2);
+  box-shadow: 0 4px 14px rgba(31, 24, 56, 0.1);
+}
+
+:root[data-theme="light"] .mywork-carousel-dot:not(.is-active)::after {
+  opacity: 0.65;
+}
+
+:root[data-theme="light"] .project-link {
+  color: #795a00;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mywork-carousel-dot::after {
     transition: none;
