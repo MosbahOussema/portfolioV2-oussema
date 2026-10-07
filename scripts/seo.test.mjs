@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFile, stat, readdir } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import sharp from 'sharp';
+import { fr } from '../src/translations/fr.js';
+import { en } from '../src/translations/en.js';
 
 const origin = 'https://www.oussamamosbah.com';
 const routes = { en: '/', fr: '/fr/' };
@@ -103,6 +105,7 @@ for (const [lang, path] of Object.entries(routes)) {
     assert.equal(works.length, 9);
     assert.equal(find('ItemList').numberOfItems, works.length);
     works.forEach((work, index) => {
+      assert.equal(work.description, ({ fr, en })[lang].projects[ids[index]].description);
       assert.equal(work.url, `${origin}${path}#project-${ids[index]}`);
       assert.ok(html.includes(work.name.replace(/&/g, '&amp;')));
       assert.equal(work.contributor['@id'], find('Person')['@id']);

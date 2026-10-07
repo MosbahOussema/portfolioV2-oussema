@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
 
 const siteOrigin = 'https://www.oussamamosbah.com';
 
@@ -110,15 +111,31 @@ test('Astrolab, Talinty and Ciceria are visible, linked and show their local log
   }
   await expect(page.locator('#project-astrolab .project-image-logo img')).toHaveAttribute('src', /astrolab-navbar.*\.svg/);
   await expect(page.locator('#project-astrolab')).toContainText('Next.js');
-  await expect(page.locator('#project-astrolab')).toContainText('AI-assisted Development');
+  await expect(page.locator('#project-astrolab')).toContainText('Motion');
+  await expect(page.locator('#project-astrolab')).toContainText('Shadcn/ui');
+  await expect(page.locator('#project-talinty')).toContainText('Shadcn/ui');
+  await expect(page.locator('#project-astrolab')).not.toContainText('Tailwind CSS');
+  await expect(page.locator('#project-talinty')).not.toContainText('Tailwind CSS');
+  await expect(page.locator('#project-astrolab')).toContainText('code review and user-flow validation');
   await expect(page.locator('#project-ciceria')).toContainText('React');
-  await expect(page.locator('#project-ciceria')).toContainText('REST API (V2)');
+  await expect(page.locator('#project-ciceria')).toContainText('Tailwind CSS');
+  await expect(page.locator('#project-ciceria')).not.toContainText('shadcn/ui');
+  await expect(page.locator('#project-ciceria')).toContainText('managing users, operations, documents and reference data');
+  await expect(page.locator('#project-ciceria')).not.toContainText(/V2|OCR|INPI|JALPRO/);
 
   await page.goto('/fr/');
   await expect(page.locator('#work .mywork-format')).toHaveCount(9);
   await expect(page.locator('#project-ciceria')).toContainText('formalités juridiques');
-  await expect(page.locator('#project-astrolab')).toContainText('Développement assisté par IA');
-  await expect(page.locator('#project-ciceria')).toContainText('API REST (V2)');
+  await expect(page.locator('#project-astrolab')).toContainText('revue du code et validation des parcours');
+  await expect(page.locator('#project-astrolab')).toContainText('Motion');
+  await expect(page.locator('#project-astrolab')).toContainText('Shadcn/ui');
+  await expect(page.locator('#project-talinty')).toContainText('Shadcn/ui');
+  await expect(page.locator('#project-astrolab')).not.toContainText('Tailwind CSS');
+  await expect(page.locator('#project-talinty')).not.toContainText('Tailwind CSS');
+  await expect(page.locator('#project-ciceria')).toContainText('Tailwind CSS');
+  await expect(page.locator('#project-ciceria')).not.toContainText('shadcn/ui');
+  await expect(page.locator('#project-ciceria')).toContainText('gestion des utilisateurs, opérations, documents et référentiels');
+  await expect(page.locator('#project-ciceria')).not.toContainText(/V2|OCR|INPI|JALPRO/);
 });
 
 test('Astrolab experience includes the three new projects in both languages', async ({ page }) => {
@@ -146,11 +163,60 @@ test('Astrolab experience includes the three new projects in both languages', as
       await expect.poll(() => logo.evaluate((img) => img.complete && img.naturalWidth > 0)).toBe(true);
       await expect(logo).toHaveCSS('object-fit', 'contain');
     }
-    await expect(dialog.locator('.modal-project-card').filter({ hasText: 'Ciceria' })).toContainText('V2');
+    const ciceria = dialog.locator('.modal-project-card').filter({ hasText: 'Ciceria' });
+    await expect(ciceria).toContainText('React');
+    await expect(ciceria).not.toContainText(/V2|OCR|INPI|JALPRO/);
+    await expect(dialog).not.toContainText(/webhook|notification engine|moteur de|Architected|Architecture d'un système/);
+    for (const name of ['Sweetees Gift & Ticket', 'Eldo Wallet']) {
+      await expect(dialog.locator('.modal-project-card').filter({ has: page.getByRole('heading', { name, exact: true }) })).toContainText('backend');
+    }
+    for (const name of ['Astrolab', 'Talinty']) {
+      const project = dialog.locator('.modal-project-card').filter({ has: page.getByRole('heading', { name, exact: true }) });
+      await expect(project).toContainText('Motion');
+      await expect(project).toContainText(path === '/' ? 'code review' : 'revue du code');
+      await expect(project).not.toContainText(/accelerat|sped up|faster|accélér/);
+    }
     await page.keyboard.press('Escape');
     await expect(dialog).toHaveCount(0);
   }
 });
+
+test('both language resume links download the exact updated PDF assets', async ({ page, request }) => {
+  for (const [route, language] of [['/', 'En'], ['/fr/', 'Fr']]) {
+    await page.goto(route);
+    const link = page.locator('.hero-actions a[href$=".pdf"]');
+    await expect(link).toHaveCount(1);
+    const response = await request.get(await link.getAttribute('href'));
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toContain('application/pdf');
+    const expected = await readFile(new URL(`../../src/assets/Cv_Oussama_Mosbah_${language} .pdf`, import.meta.url));
+    expect((await response.body()).equals(expected)).toBe(true);
+  }
+});
+
+for (const width of [320, 390, 768, 1440]) {
+  for (const route of ['/', '/fr/']) {
+    test(`revised project descriptions fit the existing cards: ${route} at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(route);
+      await page.evaluate(() => document.fonts.ready);
+      await page.locator('#work').scrollIntoViewIfNeeded();
+      for (const [index, id] of ['astrolab', 'talinty', 'ciceria', 'eldowallet', 'sweetees', 'sarabapp', 'championsmind', 'agcff', 'eekad'].entries()) {
+        await page.locator('.mywork-carousel-dot').nth(index).click();
+        const card = page.locator(`#project-${id}`);
+        if (width <= 1024) await card.click();
+        else await card.hover();
+        const description = card.locator(width <= 1024 ? '.project-mobile-panel p' : '.project-card-back .project-info p');
+        await expect(description).toBeVisible();
+        const dimensions = await description.evaluate((node) => ({ full: node.scrollHeight, visible: node.clientHeight }));
+        expect(dimensions.full, `${route} ${id} at ${width}px is clipped`).toBeLessThanOrEqual(dimensions.visible + 1);
+        if (width === 390 || width === 1440) {
+          await card.screenshot({ path: `qa-results/revised-${route === '/' ? 'en' : 'fr'}-${id}-${width}.png` });
+        }
+      }
+    });
+  }
+}
 
 test('light theme carousel is readable on desktop and mobile', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });

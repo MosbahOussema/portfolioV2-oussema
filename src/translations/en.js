@@ -37,7 +37,7 @@ export const en = {
       experience: "Years of Experience",
       experienceValue: "3+",
       projects: "Projects Completed",
-      projectsValue: "6+",
+      projectsValue: "9+",
       clients: "Happy Clients",
       clientsValue: "5+",
     },
@@ -47,7 +47,7 @@ export const en = {
     jobs: [
       {
         company: "Astrolab Agency (Sousse, Tunisia)",
-        role: "Frontend Developer",
+        role: "Front-End Engineer",
         period: "Jan 2023 – Present",
         description:
           "Frontend development across seven projects at Astrolab Agency: SaaS, fintech and e-learning applications, the Astrolab and Talinty landing pages, and Ciceria's management interface. Built responsive React and Next.js interfaces, integrated APIs and payments, and worked with code reviews, Agile practices and AI-assisted development where relevant.",
@@ -59,12 +59,12 @@ export const en = {
             name: "Astrolab",
             role: "Frontend Developer",
             description:
-              "Responsive landing page presenting Astrolab's technology, AI and automation services, with clear paths to case studies and contact.",
-            tech: ["Next.js", "Responsive design", "AI-assisted development"],
+              "Developed Astrolab's Next.js landing page, presenting services, selected work and contact journeys across mobile and desktop. Added Motion (Framer Motion) animations and used AI-assisted development with code review and user-flow validation.",
+            tech: ["Next.js", "Motion", "Shadcn/ui", "Responsive design"],
             achievements: [
               "Built a Next.js landing page organized around services, case studies and contact opportunities.",
               "Adapted the sections and navigation for mobile and desktop screens.",
-              "Used AI tools to support frontend development and interface iteration."
+              "Used AI for prototyping and implementation, with review of generated code and validation of user journeys."
             ],
             link: "https://astrolab.co/fr/"
           },
@@ -73,12 +73,12 @@ export const en = {
             name: "Talinty",
             role: "Frontend Developer",
             description:
-              "Landing page explaining Talinty's AI-assisted recruitment platform, from skills evaluation to team collaboration, with a direct path to book a demo.",
-            tech: ["Next.js", "Responsive design", "Landing page"],
+              "Developed a responsive Next.js landing page presenting Talinty's AI-assisted recruitment solution, its features and demo requests. Added Motion (Framer Motion) animations and used AI-assisted prototyping with code review and user-flow validation.",
+            tech: ["Next.js", "Motion", "Shadcn/ui", "Responsive design"],
             achievements: [
               "Developed a clear presentation of the recruitment workflow and the platform's value.",
-              "Highlighted candidate evaluation steps and calls to action leading to the demo.",
-              "Created a responsive interface for reading on mobile and desktop."
+              "Presented the product's candidate assessment features and calls to action for demo requests.",
+              "Built responsive layouts and Motion animations; used AI-assisted prototyping and implementation with code review and user-flow validation."
             ],
             link: "https://talinty.com/en"
           },
@@ -87,12 +87,12 @@ export const en = {
             name: "Ciceria",
             role: "Frontend Developer",
             description:
-              "React manager interface bringing legal-formality cases, documents and data checks into a single workflow.",
-            tech: ["React", "Manager interface", "Document management"],
+              "Developed Ciceria's React back office for a legal-formality platform used by legal professionals. Designed structured interfaces for administering users, operations, documents and business reference data.",
+            tech: ["React", "Tailwind CSS", "Responsive design"],
             achievements: [
               "Organized case tracking, documents and data checks into a coherent management interface.",
               "Designed a workflow that makes each legal-formality step easier for users to follow.",
-              "The V2 design plans OCR/AI and INPI/JALPRO integrations to extend the legal-formality workflow."
+              "Built React views for reviewing cases and supporting documents to help managers navigate their daily work."
             ],
             link: "https://app.ciceria.fr/auth/signin"
           },
@@ -101,12 +101,12 @@ export const en = {
             name: "Sweetees Gift & Ticket",
             role: "Frontend Developer",
             description:
-              "End-to-end gift card and concert ticketing platform with separate Manager and Admin portals. Designed for secure checkout flows and role-based workflows for merchants and internal operations teams.",
+              "Fully digital gift-card and ticketing platform with separate Manager and Admin portals. Developed the React interfaces that enable merchants and internal teams to manage offers, users and payment journeys.",
             tech: ["ReactJS", "TypeScript", "Material UI", "Stripe API", "GitLab", "ClickUp"],
             achievements: [
-              "Led the design and development of a dual-interface web application (Manager and Admin portals) serving 200+ registered users across 3 distinct access roles, with tailored dashboards and granular permission management per role.",
-              "Architected a multi-role authentication system using JWT tokens and RBAC, ensuring secure and seamless session handling across all user categories.",
-              "Integrated the Stripe payment gateway handling 100+ monthly transactions for gift cards and concert tickets, including real-time confirmation, error handling, and webhook event processing.",
+              "Built the React interfaces for the Manager and Admin portals, with dashboards and views tailored to the 3 access roles defined by the backend.",
+              "Integrated JWT authentication APIs on the frontend and adapted navigation and views to roles provided by the backend (RBAC).",
+              "Integrated the frontend Stripe payment journey, displaying payment status, confirmations and errors returned by backend APIs.",
               "Maintained technical documentation and participated in full Agile ceremonies (sprint planning, stand-ups, code reviews) via ClickUp and GitLab CI/CD, while standardizing reusable UI components across both portals."
             ],
             link: "https://manager.sweetees.fr/"
@@ -120,9 +120,9 @@ export const en = {
             tech: ["ReactJS", "TypeScript", "Material UI", "GitHub", "ClickUp"],
             achievements: [
               "Developed fully responsive interfaces for organizers, clubs, and federations, supporting multi-tournament management with real-time match scheduling, live results, and intuitive navigation across complex competition structures.",
-              "Engineered an automated PDF generation pipeline for official match reports and competition documents, significantly reducing manual administrative workload for federation staff.",
+              "Integrated frontend actions for generating and downloading official match reports and competition documents as PDFs.",
               "Designed and executed unit and integration tests achieving 75%+ code coverage on critical data-handling modules, strengthening reliability before production releases.",
-              "Applied clean code standards (DRY, KISS, naming conventions) through peer reviews and AI-assisted development (Cursor, Claude), improving maintainability and accelerating weekly feature delivery."
+              "Applied DRY/KISS principles and code reviews; used Claude, Cursor and Codex for assisted prototyping, followed by code and user-flow validation."
             ],
             link: "https://agcff.net/"
           },
@@ -134,10 +134,10 @@ export const en = {
               "Online e-learning platform connecting instructors and students through dedicated portals. Supports course publishing, interactive assessments, and progress tracking in a scalable, mobile-friendly learning environment.",
             tech: ["ReactJS", "TypeScript", "Material UI", "REST API"],
             achievements: [
-              "Designed and built a dual-portal e-learning platform: an instructor dashboard for creating and publishing courses, quizzes, and learning modules, and a student interface for content access and online assessments.",
-              "Implemented 20+ interactive learning modules with a real-time quiz engine, automated grading, and performance dashboards for both students and instructors.",
+              "Developed the interfaces of a dual-portal e-learning platform for instructor course and quiz creation, plus student content and assessments.",
+              "Built frontend interfaces for 20+ interactive learning modules, quiz journeys and progress dashboards, displaying results and grades supplied by backend APIs.",
               "Built structured, reusable React components to keep UI logic maintainable across modules and accelerate iteration on new pedagogical features.",
-              "Ensured full cross-device responsiveness with mobile-first strategies, coordinated with backend engineers on REST API contracts, and used AI tools (Claude, Cursor) to optimize component generation and resolve complex UI edge cases."
+              "Delivered mobile-first interfaces and integrated REST APIs with the backend team; used Claude and Cursor for prototyping and implementation, with generated-code review and user-flow validation."
             ],
             link: ""
           },
@@ -146,13 +146,12 @@ export const en = {
             name: "Eldo Wallet",
             role: "Frontend Developer",
             description:
-              "Digital loyalty and mobile wallet SaaS helping merchants reach customers via Apple Wallet and Google Wallet. Combines pass management, targeted notifications, and campaign analytics in a unified merchant dashboard.",
+              "Customer loyalty and mobile marketing platform for Apple Wallet and Google Wallet. Developed all screens across the Admin, Manager and Partner portals using React and TypeScript to manage cards, notifications and campaign metrics. The platform reports over one million activated cards.",
             tech: ["ReactJS", "TypeScript", "Material UI", "Stripe API", "REST API", "GitLab"],
             achievements: [
-              "Engineered a merchant dashboard enabling businesses to design, publish, and manage digital loyalty cards, tickets, and coupons distributed directly into Apple Wallet and Google Wallet — without requiring a dedicated consumer app.",
-              "Implemented a real-time pass update engine and geolocated push notification system, driving a 72% opt-in rate and 35% cost reduction compared to traditional SMS campaigns.",
-              "Delivered reusable data visualization components and campaign analytics views tracking engagement, coupon redemption, and visit frequency for marketing teams across retail, hospitality, and public-sector clients.",
-              "Collaborated with backend and product teams on REST API integration and Stripe-related flows, ensuring reliable data sync between the dashboard and end-user wallet experiences."
+              "Developed all screens across the Admin, Manager and Partner portals using React and TypeScript to manage loyalty cards, tickets and coupons for 2 mobile wallets: Apple Wallet and Google Wallet.",
+              "Integrated backend REST APIs on the frontend to update cards and manage targeted notifications, with status displays and error handling.",
+              "Built reusable data-visualization components to present campaign metrics and help merchants monitor campaigns from the dashboard."
             ],
             link: "https://manager.eldowallet.fr/"
           }
@@ -163,7 +162,7 @@ export const en = {
         role: "Frontend Developer — Apprenticeship",
         period: "Feb 2022 – Dec 2022",
         description:
-          "Led frontend development of Sarabapp, a full e-commerce platform for traditional abayas. Delivered Next.js SSR performance gains, MyFatoorah payment integration for regional markets, and polished UI interactions that strengthened conversion and user trust.",
+          "Developed the frontend of Sarabapp, an e-commerce platform for traditional abayas, using Next.js SSR. Integrated the MyFatoorah checkout journey and built animated components to support catalog navigation and purchasing.",
         tags: ["Next.js", "Material UI", "TypeScript", "MyFatoorah API", "GitLab", "ClickUp"],
         type: "Apprenticeship",
         projects: [
@@ -175,8 +174,8 @@ export const en = {
               "Full-featured e-commerce platform for traditional women's abayas, including catalog browsing, secure checkout, and a mobile-first shopping experience tailored to Middle Eastern customers.",
             tech: ["Next.js", "TypeScript", "Material UI", "MyFatoorah API", "GitLab", "ClickUp"],
             achievements: [
-              "Developed the Sarabapp platform with Next.js SSR, delivering measurably faster page loads and significantly improved SEO performance compared to a client-side React SPA.",
-              "Integrated the MyFatoorah payment API for a secure, localized checkout experience tailored to Middle Eastern markets with multi-currency support.",
+              "Built Sarabapp with Next.js SSR to improve load times, SEO and catalog navigation.",
+              "Integrated the frontend MyFatoorah checkout journey, displaying order steps, payment statuses and error messages from backend APIs.",
               "Designed and implemented 10+ animated UI components with CSS micro-interactions, improving overall user engagement and contributing to a smoother browsing and purchasing experience.",
               "Worked closely with the team via GitLab and ClickUp to ship iterative releases, fix production issues quickly, and keep the storefront aligned with business requirements."
             ],
@@ -189,7 +188,7 @@ export const en = {
         role: "Frontend Web Developer",
         period: "Jul 2021 – Oct 2021",
         description:
-          "Built the EeKad news and media platform from the ground up — content pages, user roles, Firebase authentication, and REST-driven publishing workflows — with a strong focus on performance, readability, and editorial usability.",
+          "Developed EeKad's frontend interfaces: homepage, articles, categories and profiles, with Firebase authentication, REST API content and contributor/admin access. Optimized loading performance and wrote user documentation.",
         tags: ["ReactJS", "REST API", "Firebase", "Material UI", "Jira", "GitLab"],
         type: "Summer Internship",
         projects: [
@@ -378,49 +377,49 @@ export const en = {
     astrolab: {
       name: "Astrolab",
       description:
-        "Responsive Next.js landing page that makes Astrolab's technology, AI and automation services easy to explore, with clear paths to case studies and contact.",
-      technologies: "Next.js, Responsive Design, AI-assisted Development, Landing Page",
+        "Next.js landing page for agency services, work and contact. Responsive layouts, Motion animations and AI-assisted prototyping, with code review and user-flow validation.",
+      technologies: "Next.js, Motion, Shadcn/ui, Responsive Design",
     },
     talinty: {
       name: "Talinty",
       description:
-        "Landing page that explains Talinty's AI-assisted recruiting platform, from skills-based candidate evaluation to team collaboration, with a clear path to book a demo.",
-      technologies: "Next.js, Landing Page, Talent Acquisition",
+        "Next.js landing page presenting an AI-assisted recruitment solution, its features and demo requests. Responsive layouts, Motion animations and AI-assisted development, with code review and user-flow validation.",
+      technologies: "Next.js, Motion, Shadcn/ui, Responsive Design",
     },
     ciceria: {
       name: "Ciceria",
       description:
-        "React manager interface that brings legal-formality cases, documents and data checks into one workflow. The V2 design plans OCR/AI and INPI/JALPRO integrations.",
-      technologies: "React, Manager UI, OCR/AI (V2), REST API (V2)",
+        "React back office for legal formalities, with responsive interfaces for managing users, operations, documents and reference data.",
+      technologies: "React, Tailwind CSS, Responsive Design",
     },
     eldowallet: {
       name: "Eldo Wallet",
       description:
-        "Digital loyalty and mobile wallet SaaS — merchant dashboard for Apple/Google Wallet passes, real-time updates, geolocated push notifications, and campaign analytics (72% opt-in, 35% cost reduction vs SMS).",
+        "Built all Admin, Manager and Partner screens in React/TypeScript for Apple Wallet and Google Wallet. The platform reports over one million activated cards.",
       technologies: "ReactJS, TypeScript, Material UI, Stripe API, REST API, GitLab",
     },
     sweetees: {
       name: "Sweetees",
       description:
-        "Gift cards and concert ticketing platform with dual Manager/Admin portals, JWT/RBAC auth for 200+ registered users, and Stripe handling 100+ monthly transactions.",
+        "React Manager/Admin interfaces for gift cards and ticketing: role-based views, JWT sign-in and frontend Stripe checkout integration.",
       technologies: "ReactJS, TypeScript, Material UI, Stripe API, GitLab, ClickUp",
     },
     sarabapp: {
       name: "Sarab App",
       description:
-        "Next.js SSR e-commerce for traditional abayas — measurably faster page loads than a client-side React SPA, localized MyFatoorah checkout, and 10+ animated UI components.",
+        "Next.js SSR e-commerce interfaces for traditional abayas: catalog navigation, frontend MyFatoorah checkout integration and 10+ animated components to streamline the shopping journey.",
       technologies: "Next.js, TypeScript, Material UI, MyFatoorah API, GitLab, ClickUp",
     },
     championsmind: {
       name: "Champion Mind",
       description:
-        "Dual-portal e-learning platform — instructor dashboard, student assessments, 20+ interactive modules, real-time quiz engine, automated grading, and mobile-first REST API integration.",
+        "React interfaces for instructors and students: courses, 20+ interactive modules, quiz journeys and results supplied by backend APIs, delivered through mobile-first layouts.",
       technologies: "ReactJS, TypeScript, Material UI, REST API",
     },
     agcff: {
       name: "AGCFF",
       description:
-        "Gulf football tournament management for organizers, clubs, and federations — multi-tournament management, automated PDF reports, and 75%+ test coverage on critical modules.",
+        "React tournament-management interfaces for Gulf organizers, clubs and federations: scheduling, results and access to PDF reports, with 75%+ test coverage on critical modules.",
       technologies: "ReactJS, TypeScript, Material UI, GitHub, ClickUp",
     },
     eekad: {
@@ -465,8 +464,8 @@ export const en = {
   },
   footer: {
     description:
-      "I am a frontend engineer based in Sousse, Tunisia, with 3 years of experience working at Astrolab Agency, a company specializing in innovative web solutions.",
-    rights: "Built with ❤ by © Oussama Mosbah 2025. All rights reserved.",
+      "Frontend Engineer based in Sousse, Tunisia, with 3+ years of experience. Developing web interfaces at Astrolab Agency across SaaS, fintech, e-commerce and e-learning applications.",
+    rights: "Built with ❤ by © Oussama Mosbah 2026. All rights reserved.",
     terms: "Terms of Services",
     privacy: "Privacy Policy",
     connect: "Connect with me",

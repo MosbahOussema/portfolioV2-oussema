@@ -37,7 +37,7 @@ export const fr = {
       experience: "Années d'Expérience",
       experienceValue: "3+",
       projects: "Projets Réalisés",
-      projectsValue: "6+",
+      projectsValue: "9+",
       clients: "Clients Satisfaits",
       clientsValue: "5+",
     },
@@ -47,7 +47,7 @@ export const fr = {
     jobs: [
       {
         company: "Astrolab Agency (Sousse, Tunisie)",
-        role: "Développeur Frontend",
+        role: "Front-End Engineer",
         period: "Jan. 2023 – Aujourd'hui",
         description:
           "Développement frontend de sept projets chez Astrolab Agency : applications SaaS, fintech et e-learning, landing pages Astrolab et Talinty, et interface de gestion Ciceria. Création d'interfaces React et Next.js responsive, intégrations API et paiement, avec revues de code, travail Agile et développement assisté par IA selon les projets.",
@@ -59,12 +59,12 @@ export const fr = {
             name: "Astrolab",
             role: "Développeur Frontend",
             description:
-              "Landing page responsive présentant les services d'Astrolab en technologie, IA et automatisation, avec un parcours clair vers les réalisations et le contact.",
-            tech: ["Next.js", "Design responsive", "Développement assisté par IA"],
+              "Développement de la landing page d'Astrolab avec Next.js : présentation des services, réalisations et parcours de contact, adaptée au mobile et au bureau. Animations avec Motion (Framer Motion) et développement assisté par IA, avec revue du code et validation des parcours utilisateurs.",
+            tech: ["Next.js", "Motion", "Shadcn/ui", "Design responsive"],
             achievements: [
               "Création d'une landing page Next.js structurée autour des services, des réalisations et des prises de contact.",
               "Adaptation des sections et de la navigation aux écrans mobiles et de bureau.",
-              "Utilisation d'outils IA en appui au développement et à l'itération des interfaces."
+              "Prototypage et implémentation assistés par IA, avec revue du code généré et validation des parcours utilisateurs."
             ],
             link: "https://astrolab.co/fr/"
           },
@@ -73,12 +73,12 @@ export const fr = {
             name: "Talinty",
             role: "Développeur Frontend",
             description:
-              "Landing page présentant la plateforme de recrutement assisté par IA de Talinty, de l'évaluation des compétences à la collaboration d'équipe, avec un accès direct à la démo.",
-            tech: ["Next.js", "Design responsive", "Landing page"],
+              "Développement d'une landing page responsive Next.js présentant la solution de recrutement assisté par IA de Talinty, ses fonctionnalités et les demandes de démonstration. Animations Motion (Framer Motion) et prototypage assisté par IA, avec revue du code et validation des parcours utilisateurs.",
+            tech: ["Next.js", "Motion", "Shadcn/ui", "Design responsive"],
             achievements: [
               "Développement d'une présentation claire du parcours de recrutement et des bénéfices de la plateforme.",
-              "Mise en avant des étapes d'évaluation des profils et des appels à l'action vers la démo.",
-              "Conception d'une interface responsive adaptée à la lecture sur mobile et ordinateur."
+              "Présentation des fonctionnalités d'évaluation des profils proposées par le produit et des appels à l'action vers la démonstration.",
+              "Interface responsive et animations Motion ; prototypage et implémentation assistés par IA, avec revue du code et validation des parcours."
             ],
             link: "https://talinty.com/en"
           },
@@ -87,12 +87,12 @@ export const fr = {
             name: "Ciceria",
             role: "Développeur Frontend",
             description:
-              "Interface manager React centralisant les dossiers de formalités juridiques, les documents et les contrôles des données dans un même parcours.",
-            tech: ["React", "Interface manager", "Gestion documentaire"],
+              "Développement du back-office React de Ciceria, une plateforme de formalités juridiques destinée aux professionnels du droit. Conception d'interfaces structurées pour administrer les utilisateurs, opérations, documents et référentiels métier.",
+            tech: ["React", "Tailwind CSS", "Design responsive"],
             achievements: [
               "Organisation des vues de suivi des dossiers, des documents et des vérifications de données dans une interface cohérente.",
               "Conception d'un parcours de gestion visant à rendre les étapes de formalité plus lisibles pour les utilisateurs.",
-              "La conception V2 prévoit l'OCR/IA et les intégrations INPI/JALPRO pour enrichir le traitement des formalités."
+              "Développement des vues React de consultation des dossiers et des pièces justificatives pour faciliter le travail des gestionnaires."
             ],
             link: "https://app.ciceria.fr/auth/signin"
           },
@@ -101,12 +101,12 @@ export const fr = {
             name: "Sweetees Gift & Ticket",
             role: "Développeur Frontend",
             description:
-              "Plateforme complète de cartes-cadeaux et billetterie de concerts avec portails Manager et Admin distincts. Conçue pour un trafic quotidien élevé, des paiements sécurisés et des parcours adaptés aux commerçants et aux équipes internes.",
+              "Plateforme 100 % digitale de cartes-cadeaux et de billetterie avec portails Manager et Admin distincts. Développement des interfaces React permettant aux commerçants et aux équipes internes de gérer les offres, les utilisateurs et les parcours de paiement.",
             tech: ["ReactJS", "TypeScript", "Material UI", "Stripe API", "GitLab", "ClickUp"],
             achievements: [
-              "Conception et développement d'une application à double portail (Manager et Admin) desservant 200+ utilisateurs enregistrés sur 3 rôles, avec tableaux de bord différenciés et gestion granulaire des permissions.",
-              "Architecture d'une authentification multi-rôles JWT/RBAC assurant une gestion sécurisée et fluide des sessions pour l'ensemble des catégories d'utilisateurs.",
-              "Intégration Stripe gérant 100+ transactions mensuelles (cartes-cadeaux et concerts), incluant confirmation temps réel, gestion d'erreurs et traitement des événements webhook.",
+              "Développement des interfaces React des portails Manager et Admin, avec tableaux de bord et vues adaptés aux 3 rôles d'accès définis par le backend.",
+              "Intégration côté frontend des API d'authentification JWT et adaptation de la navigation et des vues aux rôles transmis par le backend (RBAC).",
+              "Intégration frontend du parcours de paiement Stripe : affichage des statuts, confirmations et erreurs renvoyés par les API backend.",
               "Documentation technique, participation Agile (sprint planning, stand-ups, revues) via ClickUp/GitLab CI/CD, et standardisation de composants UI réutilisables sur les deux portails."
             ],
             link: "https://manager.sweetees.fr/"
@@ -120,9 +120,9 @@ export const fr = {
             tech: ["ReactJS", "TypeScript", "Material UI", "GitHub", "ClickUp"],
             achievements: [
               "Développement d'interfaces réactives pour organisateurs, clubs et fédérations, supportant la gestion multi-tournois avec planification, résultats en temps réel et navigation intuitive sur des structures de compétition complexes.",
-              "Pipeline de génération automatique de PDF pour rapports officiels et documents de compétition, réduisant significativement la charge de travail administratif des équipes fédérales.",
+              "Intégration côté frontend des actions de génération et de téléchargement des rapports PDF de matchs et des documents de compétition.",
               "Stratégie de tests unitaires et d'intégration atteignant 75%+ de couverture sur les modules critiques, renforçant la fiabilité avant mise en production.",
-              "Standards de code propre (DRY, KISS, conventions) via revues régulières et outils IA (Cursor, Claude), améliorant la maintenabilité et accélérant les livraisons hebdomadaires."
+              "Application des principes DRY/KISS et revues de code ; prototypage assisté par Claude, Cursor et Codex, avec validation du code et des parcours utilisateurs."
             ],
             link: "https://agcff.net/"
           },
@@ -134,10 +134,10 @@ export const fr = {
               "Plateforme e-learning reliant enseignants et étudiants via deux portails dédiés. Permet la publication de cours, les évaluations interactives et le suivi des progrès dans un environnement scalable et mobile-friendly.",
             tech: ["ReactJS", "TypeScript", "Material UI", "REST API"],
             achievements: [
-              "Conception d'une plateforme e-learning à double portail : dashboard enseignant (cours, quiz, modules) et interface étudiant pour contenus et évaluations en ligne.",
-              "Implémentation de 20+ modules interactifs avec quiz temps réel, notation automatique et tableaux de suivi pour enseignants et étudiants.",
+              "Développement des interfaces d'une plateforme e-learning à deux portails : création de cours et quiz côté enseignant, contenus et évaluations côté étudiant.",
+              "Développement des interfaces de 20+ modules interactifs, des parcours de quiz et des tableaux de suivi, avec affichage des résultats et notes fournis par les API backend.",
               "Composants React structurés et réutilisables pour maintenir la logique UI et accélérer l'ajout de nouvelles fonctionnalités pédagogiques.",
-              "Réactivité multi-appareils en mobile-first, coordination REST API avec le backend, et outils IA (Claude, Cursor) pour optimiser les composants et résoudre les cas limites UI."
+              "Interfaces mobile-first et intégration des API REST avec l'équipe backend ; prototypage et implémentation assistés par Claude et Cursor, avec revue du code généré et validation des parcours utilisateurs."
             ],
             link: ""
           },
@@ -146,13 +146,12 @@ export const fr = {
             name: "Eldo Wallet",
             role: "Développeur Frontend",
             description:
-              "SaaS de fidélisation et portefeuilles mobiles pour toucher les clients via Apple Wallet et Google Wallet. Regroupe gestion des passes, notifications ciblées et analytics de campagne dans un tableau de bord marchand unifié.",
+              "Plateforme de fidélisation et marketing mobile pour Apple Wallet et Google Wallet. Développement de l'ensemble des écrans Admin, Manager et Partner en React et TypeScript pour gérer les cartes, notifications et indicateurs de campagne. La plateforme annonce plus d'un million de cartes activées.",
             tech: ["ReactJS", "TypeScript", "Material UI", "Stripe API", "REST API", "GitLab"],
             achievements: [
-              "Tableau de bord marchand pour concevoir, publier et gérer cartes de fidélité, billets et coupons dans Apple/Google Wallet — sans application mobile dédiée côté client final.",
-              "Moteur de mise à jour des passes en temps réel et notifications push géolocalisées : 72% d'opt-in et 35% de réduction de coût par rapport aux SMS.",
-              "Composants de dataviz réutilisables et vues analytics (engagement, coupons, fréquence de visite) pour les équipes marketing retail, restauration et secteur public.",
-              "Collaboration avec backend et produit sur les flux REST API et Stripe, assurant une synchronisation fiable entre dashboard et expérience portefeuille utilisateur."
+              "Développement de l'ensemble des écrans Admin, Manager et Partner en React et TypeScript pour gérer les cartes de fidélité, billets et coupons destinés à 2 portefeuilles mobiles : Apple Wallet et Google Wallet.",
+              "Intégration frontend des API REST du backend pour mettre à jour les cartes et piloter les notifications ciblées, avec affichage des statuts et gestion des erreurs.",
+              "Développement de composants réutilisables de visualisation de données pour présenter les indicateurs des campagnes et faciliter leur suivi depuis le tableau de bord."
             ],
             link: "https://manager.eldowallet.fr/"
           }
@@ -163,7 +162,7 @@ export const fr = {
         role: "Développeur Frontend — Alternance",
         period: "Fév. 2022 – Déc. 2022",
         description:
-          "Pilotage du développement frontend de Sarabapp, plateforme e-commerce d'abayas traditionnelles. Livraison Next.js SSR, intégration MyFatoorah pour les marchés régionaux et interactions UI soignées renforçant conversion et confiance utilisateur.",
+          "Développement frontend de Sarabapp, plateforme e-commerce d'abayas traditionnelles, avec Next.js SSR. Intégration du parcours de paiement MyFatoorah et création de composants animés pour faciliter la navigation et les achats.",
         tags: ["Next.js", "Material UI", "TypeScript", "MyFatoorah API", "GitLab", "ClickUp"],
         type: "Alternance",
         projects: [
@@ -175,8 +174,8 @@ export const fr = {
               "E-commerce complet pour abayas traditionnelles : catalogue, commande sécurisée et expérience d'achat mobile-first adaptée aux clients du Moyen-Orient.",
             tech: ["Next.js", "TypeScript", "Material UI", "MyFatoorah API", "GitLab", "ClickUp"],
             achievements: [
-              "Plateforme Sarabapp en Next.js SSR : temps de chargement mesurables nettement inférieurs à une React SPA classique, meilleur SEO et navigation fluide entre catalogue et tunnel de commande.",
-              "Intégration MyFatoorah pour un checkout sécurisé et localisé, adapté aux besoins du marché moyen-oriental avec support multi-devises.",
+              "Développement de Sarabapp en Next.js SSR pour améliorer les temps de chargement, le référencement naturel et la navigation du catalogue.",
+              "Intégration côté frontend du parcours de paiement MyFatoorah : étapes de commande, statuts et messages d'erreur à partir des API backend.",
               "10+ composants UI animés et micro-interactions CSS, améliorant l'expérience utilisateur et la fluidité du parcours d'achat.",
               "Livraisons itératives via GitLab/ClickUp, corrections rapides en production et alignement continu avec les besoins métier."
             ],
@@ -189,7 +188,7 @@ export const fr = {
         role: "Développeur Frontend Web",
         period: "Juil. 2021 – Oct. 2021",
         description:
-          "Conception et développement de la plateforme média EeKad — pages de contenu, rôles utilisateurs, authentification Firebase et workflows REST — avec un fort accent sur performance, lisibilité et ergonomie éditoriale.",
+          "Développement des interfaces de la plateforme média EeKad : accueil, articles, catégories et profils, avec authentification Firebase, contenus REST API et accès contributeur/administrateur. Optimisation du chargement et documentation utilisateur.",
         tags: ["ReactJS", "REST API", "Firebase", "Material UI", "Jira", "GitLab"],
         type: "Stage d'été",
         projects: [
@@ -378,49 +377,49 @@ export const fr = {
     astrolab: {
       name: "Astrolab",
       description:
-        "Landing page responsive en Next.js qui clarifie l'offre d'Astrolab en technologie, IA et automatisation, et guide les visiteurs vers ses réalisations et le contact.",
-      technologies: "Next.js, Design responsive, Développement assisté par IA, Landing Page",
+        "Landing page Next.js : services, réalisations et contact. Responsive, animations Motion. Prototypage assisté par IA, revue du code et validation des parcours.",
+      technologies: "Next.js, Motion, Shadcn/ui, Design responsive",
     },
     talinty: {
       name: "Talinty",
       description:
-        "Landing page qui explique le recrutement assisté par IA de Talinty : évaluation des compétences, analyse des profils et collaboration d'équipe, avec un accès direct à la démo.",
-      technologies: "Next.js, Landing Page, Recrutement",
+        "Landing page Next.js présentant une solution de recrutement assisté par IA, ses fonctionnalités et les demandes de démo. Animations Motion, code et parcours validés.",
+      technologies: "Next.js, Motion, Shadcn/ui, Design responsive",
     },
     ciceria: {
       name: "Ciceria",
       description:
-        "Interface manager React qui réunit dossiers de formalités juridiques, documents et contrôles des données dans un même parcours. La V2 prévoit l'OCR/IA et les intégrations INPI/JALPRO.",
-      technologies: "React, Interface Manager, OCR/IA (V2), API REST (V2)",
+        "Back-office React pour les formalités juridiques : interfaces responsive de gestion des utilisateurs, opérations, documents et référentiels.",
+      technologies: "React, Tailwind CSS, Design responsive",
     },
     eldowallet: {
       name: "Eldo Wallet",
       description:
-        "SaaS fidélisation et portefeuilles mobiles — tableau de bord marchand Apple/Google Wallet, mises à jour temps réel, notifications push géolocalisées et analytics (72% opt-in, -35% coût vs SMS).",
+        "Tous les écrans Admin, Manager et Partner en React/TypeScript pour Apple Wallet et Google Wallet. La plateforme annonce plus d'un million de cartes activées.",
       technologies: "ReactJS, TypeScript, Material UI, Stripe API, REST API, GitLab",
     },
     sweetees: {
       name: "Sweetees",
       description:
-        "Plateforme cartes-cadeaux et billetterie avec portails Manager/Admin, auth JWT/RBAC pour 200+ utilisateurs enregistrés et Stripe (100+ transactions mensuelles).",
+        "Interfaces React Manager/Admin pour les cartes-cadeaux et la billetterie : vues par rôle, connexion JWT et intégration frontend du paiement Stripe.",
       technologies: "ReactJS, TypeScript, Material UI, Stripe API, GitLab, ClickUp",
     },
     sarabapp: {
       name: "Sarab App",
       description:
-        "E-commerce Next.js SSR pour abayas traditionnelles — temps de chargement mesurables inférieurs à une React SPA, checkout MyFatoorah localisé et 10+ composants animés.",
+        "Interfaces e-commerce Next.js SSR pour abayas traditionnelles : navigation du catalogue, intégration frontend du paiement MyFatoorah et 10+ composants animés pour fluidifier le parcours d'achat.",
       technologies: "Next.js, TypeScript, Material UI, MyFatoorah API, GitLab, ClickUp",
     },
     championsmind: {
       name: "Champion Mind",
       description:
-        "Plateforme e-learning double portail — dashboard enseignant, évaluations étudiant, 20+ modules interactifs, quiz temps réel, notation auto et intégration REST API mobile-first.",
+        "Interfaces React pour enseignants et étudiants : cours, 20+ modules interactifs, parcours de quiz et suivi des résultats fournis par les API backend, avec une mise en page mobile-first.",
       technologies: "ReactJS, TypeScript, Material UI, REST API",
     },
     agcff: {
       name: "AGCFF",
       description:
-        "Gestion tournois football Golfe pour organisateurs, clubs et fédérations — gestion multi-tournois, PDF automatisés et 75%+ couverture tests sur modules critiques.",
+        "Interfaces React de gestion de tournois dans le Golfe : planification, résultats et rapports PDF, avec 75%+ de couverture de tests sur les modules critiques.",
       technologies: "ReactJS, TypeScript, Material UI, GitHub, ClickUp",
     },
     eekad: {
@@ -465,8 +464,8 @@ export const fr = {
   },
   footer: {
     description:
-      "Ingénieur Frontend basé à Sousse, Tunisie, avec 3 ans d'expérience au sein d'Astrolab Agency, spécialisée dans les solutions web innovantes et les applications métier à haute valeur ajoutée.",
-    rights: "Créé avec ❤ par © Oussama Mosbah 2025. Tous droits réservés.",
+      "Ingénieur Frontend basé à Sousse, Tunisie, avec plus de 3 ans d'expérience. Développement d'interfaces web chez Astrolab Agency : applications SaaS, fintech, e-commerce et e-learning.",
+    rights: "Créé avec ❤ par © Oussama Mosbah 2026. Tous droits réservés.",
     terms: "Conditions de Service",
     privacy: "Politique de Confidentialité",
     connect: "Me Contacter",
